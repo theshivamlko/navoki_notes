@@ -22,7 +22,11 @@ The is a **single code-base cross-platform app made on Flutter Framework with Fi
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/g-hPh6FPfgo/0.jpg)](https://www.youtube.com/watch?v=g-hPh6FPfgo)
 
 ## Downloads
-Ready to use app [Release](https://github.com/theshivamlko/navoki_notes/releases)
+Ready to use app [Android App](https://play.google.com/store/apps/details?id=com.navoki.keepapp)
+
+[Web App](https://navoki.com/samples/navoki-notes/#/)
+
+[iOS, Windows, MacOS,Linux](https://github.com/theshivamlko/navoki_notes/releases)
 
 ## Getting Started
 
