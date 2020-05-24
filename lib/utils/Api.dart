@@ -81,6 +81,7 @@ Future<bool> addNote(NoteModel noteModel) async {
     if (response.statusCode == 200) {
       return true;
     }
+    return false;
   } catch (err) {
     throw err;
   }
@@ -103,6 +104,7 @@ Future<bool> updateData(NoteModel noteModel) async {
     if (response.statusCode == 200) {
       return true;
     }
+    return false;
   } catch (err) {
     throw err;
   }
@@ -118,6 +120,7 @@ Future<bool> deleteNote(NoteModel noteModel) async {
     if (response.statusCode == 200) {
       return true;
     }
+    return false;
   } catch (err) {
     throw err;
   }
@@ -165,7 +168,6 @@ Future<String> registerUser(String email, String password) async {
   } catch (err) {
     throw err;
   }
-  return null;
 }
 
 /// Sign-in existing user with  [token]

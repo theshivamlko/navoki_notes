@@ -18,9 +18,9 @@ import 'package:provider/provider.dart';
 
 /// Home page UI
 class HomePage extends StatefulWidget {
-  String token;
+  final String token;
 
-  HomePage(this.token);
+  const HomePage({Key key, this.token}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();

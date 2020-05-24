@@ -5,8 +5,6 @@ import 'package:keepapp/screen/HomePage.dart';
 import 'package:keepapp/utils/Api.dart' as Api;
 import 'package:keepapp/utils/LocalDataStorage.dart';
 import 'package:keepapp/utils/Utils.dart';
-import 'package:keepapp/blocs/HomeBloc.dart';
-import 'package:provider/provider.dart';
 
 class LoginBloc extends ChangeNotifier {
   List<NoteModel> notesList = List();
@@ -18,8 +16,7 @@ class LoginBloc extends ChangeNotifier {
   void resetPassword(String email) {
     Api.resetPassword(email).then((value) {
       Utils.showToast("An email link is sent to your email");
-    }).catchError((onError) {
-    });
+    }).catchError((onError) {});
   }
 
   Future<String> getToken() async {
@@ -31,9 +28,10 @@ class LoginBloc extends ChangeNotifier {
     //  print(  Utils.userId);
     if (Utils.loginToken != null) {
       bool isValid = await Api.signInWithToken(Utils.loginToken);
-      if (isValid ?? false) openHomePage(token);
+      if (isValid ?? false)
+        openHomePage(token);
       else
-         return null;
+        return null;
     }
 
     return Utils.loginToken;
@@ -41,8 +39,22 @@ class LoginBloc extends ChangeNotifier {
   }
 
   signIn(String email, String password) {
+    // checking if email and password are valid
+    if (email == null || email.length < 3 || !email.contains("@")) {
+      Utils.showToast("Invalid email");
+      return;
+    }
+    if (password == null || password.length < 5) {
+      Utils.showToast("Invalid password");
+      return;
+    }
+
+    // hiding keyboard if email and password are valid
+    FocusScope.of(context).requestFocus(FocusNode());
+
     isLoading = true;
     notifyListeners();
+
     Api.signInUser(email, password).then((token) {
       if (token != null) {
         isLoading = false;
@@ -64,11 +76,24 @@ class LoginBloc extends ChangeNotifier {
   void openHomePage(String token) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => HomePage(token)),
+      MaterialPageRoute(builder: (context) => HomePage(token: token)),
     );
   }
 
   void register(String email, String password) {
+    // checking if email and password are valid
+    if (email == null || email.length < 3 || !email.contains("@")) {
+      Utils.showToast("Invalid email");
+      return;
+    }
+    if (password == null || password.length < 5) {
+      Utils.showToast("Invalid password");
+      return;
+    }
+
+    // hiding keyboard if email and password are valid
+    FocusScope.of(context).requestFocus(FocusNode());
+
     isLoading = true;
     notifyListeners();
     Api.registerUser(email, password).then((token) {
