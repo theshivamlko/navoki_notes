@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 0.30.3">
+  <meta name="description" content="keepapp API docs, for the Dart programming language.">
+  <title>keepapp - Dart API docs</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+
+</head>
+
+<body data-base-href=""
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li class="self-crumb">keepapp package</li>
+  </ol>
+  <div class="self-name">keepapp</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li class="self-crumb">keepapp package</li>
+    </ol>
+    
+    <h5 class="hidden-xs"><span class="package-name">keepapp</span> <span class="package-kind">package</span></h5>
+    <ol>
+          <li class="section-title">Libraries</li>
+          <li><a href="utils_Api/utils_Api-library.html">Api</a></li>
+          <li><a href="utils_AppConstants/utils_AppConstants-library.html">AppConstants</a></li>
+          <li><a href="callbacks_ClickCallback/callbacks_ClickCallback-library.html">ClickCallback</a></li>
+          <li><a href="utils_Device/utils_Device-library.html">Device</a></li>
+          <li><a href="utils_Exceptions/utils_Exceptions-library.html">Exceptions</a></li>
+          <li><a href="blocs_HomeBloc/blocs_HomeBloc-library.html">HomeBloc</a></li>
+          <li><a href="screen_HomePage/screen_HomePage-library.html">HomePage</a></li>
+          <li><a href="widgets_ItemWidget/widgets_ItemWidget-library.html">ItemWidget</a></li>
+          <li><a href="utils_LocalDataStorage/utils_LocalDataStorage-library.html">LocalDataStorage</a></li>
+          <li><a href="blocs_LoginBloc/blocs_LoginBloc-library.html">LoginBloc</a></li>
+          <li><a href="screen_LoginPage/screen_LoginPage-library.html">LoginPage</a></li>
+          <li><a href="enums_NoteActions/enums_NoteActions-library.html">NoteActions</a></li>
+          <li><a href="screen_NoteDetail/screen_NoteDetail-library.html">NoteDetail</a></li>
+          <li><a href="screen_NoteList/screen_NoteList-library.html">NoteList</a></li>
+          <li><a href="model_NoteModel/model_NoteModel-library.html">NoteModel</a></li>
+          <li><a href="blocs_NotesBloc/blocs_NotesBloc-library.html">NotesBloc</a></li>
+          <li><a href="utils_Utils/utils_Utils-library.html">Utils</a></li>
+          <li><a href="generated_plugin_registrant/generated_plugin_registrant-library.html">generated_plugin_registrant</a></li>
+          <li><a href="main/main-library.html">main</a></li>
+          <li class="section-title">Dart</li>
+          <li><a href="dart-ui/dart-ui-library.html">dart:ui</a></li>
+          <li class="section-subtitle">Core</li>
+            <li class="section-subitem"><a href="dart-async/dart-async-library.html">dart:async</a></li>
+            <li class="section-subitem"><a href="dart-collection/dart-collection-library.html">dart:collection</a></li>
+            <li class="section-subitem"><a href="dart-convert/dart-convert-library.html">dart:convert</a></li>
+            <li class="section-subitem"><a href="dart-core/dart-core-library.html">dart:core</a></li>
+            <li class="section-subitem"><a href="dart-developer/dart-developer-library.html">dart:developer</a></li>
+            <li class="section-subitem"><a href="dart-math/dart-math-library.html">dart:math</a></li>
+            <li class="section-subitem"><a href="dart-typed_data/dart-typed_data-library.html">dart:typed_data</a></li>
+          <li class="section-subtitle">VM</li>
+            <li class="section-subitem"><a href="dart-ffi/dart-ffi-library.html">dart:ffi</a></li>
+            <li class="section-subitem"><a href="dart-io/dart-io-library.html">dart:io</a></li>
+            <li class="section-subitem"><a href="dart-isolate/dart-isolate-library.html">dart:isolate</a></li>
+          <li class="section-subtitle">Web</li>
+            <li class="section-subitem"><a href="dart-html/dart-html-library.html">dart:html</a></li>
+            <li class="section-subitem"><a href="dart-js/dart-js-library.html">dart:js</a></li>
+            <li class="section-subitem"><a href="dart-js_util/dart-js_util-library.html">dart:js_util</a></li>
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <section class="desc markdown">
+        <p><img src="misc/banner.png" alt="Image"></p>
+<h1 id="navokinotes">NavokiNotes</h1>
+<p>Navoki Notes, a note app app, will sync data to cloud and on all devices. We have application for <strong>Android, iOS, Web App, PWA, Windows, macOS, Linux</strong> , so you can access data anywhere on any device. Its FREE to use.
+The is a <strong>single code-base cross-platform app made on Flutter Framework with Firebase</strong>.</p>
+<p><a href="https://opensource.org/licenses/Apache-2.0"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=102" alt="Open Source Love"></a></p>
+<p><a href="https://play.google.com/store/apps/details?id=com.navoki.keepapp"><img src="misc/googleplay.png" alt="Image"></a></p>
+<p><img src="misc/youtube.png" alt="Image"> <a href="https://www.youtube.com/channel/UCP2-MYtIbBnlEcfTvJKo5Og?sub_confirmation=1">Youtube</a></p>
+<p><img src="misc/logo_25.png" alt="Image"> <a href="https://navoki.com/blog/">Navoki.com</a></p>
+<h2 id="screenshots">Screenshots</h2>  <img src="https://i.imgur.com/PSNQnmR.jpg" height="300px">
+  <img src="https://i.imgur.com/1pRlTex.jpg" height="300px">
+  <img src="https://i.imgur.com/EHFHrOV.jpg" height="300px">
+  <img src="https://i.imgur.com/lOJUfc6.jpg" height="300px">
+  <img src="https://i.imgur.com/QwN21XA.jpg" height="300px">
+  <img src="https://i.imgur.com/xUVmaNa.jpg" height="300px">
+<h2 id="getting-started">Getting Started</h2>
+<p>This project is made with <a href="https://www.flutter.dev">Flutter Framework</a>, <a href="https://firebase.google.com/docs/auth/">Firebase Authentication</a>, <a href="https://firebase.google.com/docs/firestore">Cloud Firestore</a> and <a href="https://xd.adobelanding.com/xd-to-flutter/">Adobe XD Flutter plugin</a>.</p>
+<p>A few resources to get you started if this is your first Flutter project:</p>
+<ul>
+<li><a href="https://flutter.dev/docs/get-started/codelab">Lab: Write your first Flutter app</a></li>
+<li><a href="https://flutter.dev/docs/cookbook">Cookbook: Useful Flutter samples</a></li>
+</ul>
+<p>For help getting started with Flutter, view our
+<a href="https://flutter.dev/docs">online documentation</a>, which offers tutorials,
+samples, guidance on mobile development, and a full API reference.</p>
+<h2 id="installation-and-config">Installation and Config</h2>
+<ul>
+<li>Install <a href="https://flutter.dev/docs/get-started/install">Flutter SDK</a> from official site.</li>
+<li>Setup Environment for <a href="https://flutter.dev/docs/get-started/flutter-for/android-devs">Android</a> and <a href="https://flutter.dev/docs/get-started/flutter-for/ios-devs">iOS</a></li>
+<li>Setup Environment for <a href="https://www.youtube.com/watch?v=N8YYVV1aZc8">Web</a></li>
+<li>Setup Environment for <a href="https://www.youtube.com/watch?v=ixj0MMusDM8">Desktop</a></li>
+<li>Create a <a href="https://firebase.google.com/">Firebase Project</a> </li>
+<li>Enable <a href="https://firebase.google.com/docs/firestore/security/get-started">Firebase Security rules</a> on Firebase Console. <a href="https://medium.com/@khreniak/cloud-firestore-security-rules-basics-fac6b6bea18e">Read more</a>.</li>
+<li>Check if platform is shows for project by running <code>flutter devices</code></li>
+<li>Replace <code>API_KEY</code> value with your project key, <code>&lt;Project&gt;</code> <em><strong>-&gt; Project Settings -&gt; General -&gt;</strong></em> <code>Web API key</code> </li>
+</ul>
+<h2 id="build-project">Build Project</h2>
+<ul>
+<li>To run and build project run command <code>flutter build &lt;device-name&gt;</code></li>
+<li>To get devices list, run <code>flutter devices</code></li>
+</ul>
+<h3 id="note">NOTE:</h3>
+<ul>
+<li>Also, install build tools for each platforms  to run on that platform. Follow links above.</li>
+<li><strong>Flutter Desktop is not stable yet</strong> so you might face some issue, till now I have faced few app crashes on desktop but feature is implemented and app is running.
+For Linux app you need to build project and run using <code>flutter run -d linux</code></li>
+</ul>
+<h3 id="my-flutter-and-tools-version">My Flutter and Tools version:</h3>
+<p><code>flutter doctor -v</code></p>
+<pre class="language-dart"><code>[✓] Flutter (Channel master, 1.19.0-2.0.pre.140, on Mac OS X 10.15.5 19F83c,
+    locale en-IN)
+    • Flutter version 1.19.0-2.0.pre.140 at /Users/shivam/Documents/flutter
+    • Framework revision 852a30b003 (41 minutes ago), 2020-05-22 03:27:03 +0530
+    • Engine revision 9ce1e5c5c7
+    • Dart version 2.9.0 (build 2.9.0-10.0.dev 7706afbcf5)
+
+[!] Android toolchain - develop for Android devices (Android SDK version 29.0.3)
+    • Android SDK at /Users/shivam/Library/Android/sdk
+    • Platform android-29, build-tools 29.0.3
+    • Java binary at: /Applications/Android
+      Studio.app/Contents/jre/jdk/Contents/Home/bin/java
+    • Java version OpenJDK Runtime Environment (build
+      1.8.0_212-release-1586-b4-5784211)
+
+[✓] Xcode - develop for iOS and macOS (Xcode 11.3.1)
+    • Xcode at /Applications/Xcode.app/Contents/Developer
+    • Xcode 11.3.1, Build version 11C505
+    • CocoaPods version 1.9.1
+
+[√] Visual Studio - develop for Windows (Visual Studio Community 2019 16.5.1)
+    • Visual Studio at C:\Program Files (x86)\Microsoft Visual Studio\2019\Community
+    • Visual Studio Community 2019 version 16.5.29920.165
+
+[✓] Linux toolchain - develop for Linux desktop
+    • clang version 6.0.0-1ubuntu2 (tags/RELEASE_600/final)
+    • cmake version 3.10.2
+    • ninja version 1.8.2
+
+[✓] Android Studio (version 3.6)
+    • Android Studio at /Applications/Android Studio.app/Contents
+    • Flutter plugin version 45.1.1
+    • Dart plugin version 192.8052
+    • Java version OpenJDK Runtime Environment (build
+      1.8.0_212-release-1586-b4-5784211)
+
+[✓] VS Code (version 1.44.2)
+    • Flutter extension version 3.9.1
+
+</code></pre>
+<h2 id="contribution">Contribution</h2>
+<p>This project is open to all kinds of contribution in all of its categories.You can add more features and bug fixes in this code.</p>
+<h2 id="support">Support</h2>
+<p>If you found this project helpful then show some support by :star: the repo and subscribe to my YoutubeChannel and Newsletter for latest updates in dev world. It will <strong>encourage</strong> me to make more videos and tutorials.
+Comment on youtube channel for more tutorials</p>
+<h2 id="project-created--maintained-by">Project Created &amp; Maintained By</h2>
+<h4 id="shivam-srivastava">SHIVAM SRIVASTAVA</h4>
+<p>Mobile Solution Architect, #Android and #Flutter Developer, #Dart, Maybe #Go, #Founder of Navoki.com, #Google Scholar #Udacity Android #Nanodegree, 
+Entrepreneur</p>
+<p><a href="https://www.youtube.com/channel/UCP2-MYtIbBnlEcfTvJKo5Og?sub_confirmation=1"><img src="misc/youtube2.png" alt="Image"></a>  &nbsp; <a href="https://twitter.com/theshivamlko"><img src="misc/twitter.png" alt="Image"></a> &nbsp; <a href="https://www.linkedin.com/in/theshivamlko/"><img src="misc/linkedin.png" alt="Image"></a> &nbsp; <a href="https://navoki.com/"><img src="misc/navoki.png" alt="Image"></a> &nbsp; <a href="https://www.facebook.com/shivamlove11"><img src="misc/facebook.png" alt="Image"></a> &nbsp; <a href="http://instagram.com/theshivamlko"><img src="misc/instagram.png" alt="Image"></a>  </p>
+<h2 id="license-and-trademarks">License and Trademarks</h2>
+<pre class="language-dart"><code>Copyright 2020 Shivam Srivastava
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+<p>Navoki and Navoki logo are registered trademark of <a href="https://navoki.com/">navoki.com</a>. You are free to use the source code above.</p>
+      </section>
+      
+        <section class="summary">
+            <h2>Libraries</h2>
+          <dl>
+            <dt id="Api">
+              <span class="name"><a href="utils_Api/utils_Api-library.html">Api</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="AppConstants">
+              <span class="name"><a href="utils_AppConstants/utils_AppConstants-library.html">AppConstants</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="ClickCallback">
+              <span class="name"><a href="callbacks_ClickCallback/callbacks_ClickCallback-library.html">ClickCallback</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="Device">
+              <span class="name"><a href="utils_Device/utils_Device-library.html">Device</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="Exceptions">
+              <span class="name"><a href="utils_Exceptions/utils_Exceptions-library.html">Exceptions</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="HomeBloc">
+              <span class="name"><a href="blocs_HomeBloc/blocs_HomeBloc-library.html">HomeBloc</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="HomePage">
+              <span class="name"><a href="screen_HomePage/screen_HomePage-library.html">HomePage</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="ItemWidget">
+              <span class="name"><a href="widgets_ItemWidget/widgets_ItemWidget-library.html">ItemWidget</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="LocalDataStorage">
+              <span class="name"><a href="utils_LocalDataStorage/utils_LocalDataStorage-library.html">LocalDataStorage</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="LoginBloc">
+              <span class="name"><a href="blocs_LoginBloc/blocs_LoginBloc-library.html">LoginBloc</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="LoginPage">
+              <span class="name"><a href="screen_LoginPage/screen_LoginPage-library.html">LoginPage</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="NoteActions">
+              <span class="name"><a href="enums_NoteActions/enums_NoteActions-library.html">NoteActions</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="NoteDetail">
+              <span class="name"><a href="screen_NoteDetail/screen_NoteDetail-library.html">NoteDetail</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="NoteList">
+              <span class="name"><a href="screen_NoteList/screen_NoteList-library.html">NoteList</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="NoteModel">
+              <span class="name"><a href="model_NoteModel/model_NoteModel-library.html">NoteModel</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="NotesBloc">
+              <span class="name"><a href="blocs_NotesBloc/blocs_NotesBloc-library.html">NotesBloc</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="Utils">
+              <span class="name"><a href="utils_Utils/utils_Utils-library.html">Utils</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="generated_plugin_registrant">
+              <span class="name"><a href="generated_plugin_registrant/generated_plugin_registrant-library.html">generated_plugin_registrant</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+            <dt id="main">
+              <span class="name"><a href="main/main-library.html">main</a></span>             
+            </dt>
+            <dd>
+               
+            </dd>
+          </dl>
+        </section>
+        <section class="summary">
+            <h2>Dart</h2>
+          <dl>
+            <dt id="dart:ui">
+              <span class="name"><a href="dart-ui/dart-ui-library.html">dart:ui</a></span>             
+            </dt>
+            <dd>
+              Built-in types and core primitives for a Flutter application. <a href="dart-ui/dart-ui-library.html">[...]</a>
+            </dd>
+            <h3>Core</h3>
+              <dt id="dart:async">
+                <span class="name"><a href="dart-async/dart-async-library.html">dart:async</a></span>               
+              </dt>
+              <dd>
+                Support for asynchronous programming,
+with classes such as Future and Stream. <a href="dart-async/dart-async-library.html">[...]</a>
+              </dd>
+              <dt id="dart:collection">
+                <span class="name"><a href="dart-collection/dart-collection-library.html">dart:collection</a></span>               
+              </dt>
+              <dd>
+                Classes and utilities that supplement the collection support in dart:core. <a href="dart-collection/dart-collection-library.html">[...]</a>
+              </dd>
+              <dt id="dart:convert">
+                <span class="name"><a href="dart-convert/dart-convert-library.html">dart:convert</a></span>               
+              </dt>
+              <dd>
+                Encoders and decoders for converting between different data representations,
+including JSON and UTF-8. <a href="dart-convert/dart-convert-library.html">[...]</a>
+              </dd>
+              <dt id="dart:core">
+                <span class="name"><a href="dart-core/dart-core-library.html">dart:core</a></span>               
+              </dt>
+              <dd>
+                Built-in types, collections,
+and other core functionality for every Dart program. <a href="dart-core/dart-core-library.html">[...]</a>
+              </dd>
+              <dt id="dart:developer">
+                <span class="name"><a href="dart-developer/dart-developer-library.html">dart:developer</a></span>               
+              </dt>
+              <dd>
+                Interact with developer tools such as the debugger and inspector. <a href="dart-developer/dart-developer-library.html">[...]</a>
+              </dd>
+              <dt id="dart:math">
+                <span class="name"><a href="dart-math/dart-math-library.html">dart:math</a></span>               
+              </dt>
+              <dd>
+                Mathematical constants and functions, plus a random number generator. <a href="dart-math/dart-math-library.html">[...]</a>
+              </dd>
+              <dt id="dart:typed_data">
+                <span class="name"><a href="dart-typed_data/dart-typed_data-library.html">dart:typed_data</a></span>               
+              </dt>
+              <dd>
+                Lists that efficiently handle fixed sized data
+(for example, unsigned 8 byte integers) and SIMD numeric types. <a href="dart-typed_data/dart-typed_data-library.html">[...]</a>
+              </dd>
+            <h3>VM</h3>
+              <dt id="dart:ffi">
+                <span class="name"><a href="dart-ffi/dart-ffi-library.html">dart:ffi</a></span>               
+              </dt>
+              <dd>
+                Foreign Function Interface for interoperability with the C programming language. <a href="dart-ffi/dart-ffi-library.html">[...]</a>
+              </dd>
+              <dt id="dart:io">
+                <span class="name"><a href="dart-io/dart-io-library.html">dart:io</a></span>               
+              </dt>
+              <dd>
+                File, socket, HTTP, and other I/O support for non-web applications. <a href="dart-io/dart-io-library.html">[...]</a>
+              </dd>
+              <dt id="dart:isolate">
+                <span class="name"><a href="dart-isolate/dart-isolate-library.html">dart:isolate</a></span>               
+              </dt>
+              <dd>
+                Concurrent programming using <em>isolates</em>:
+independent workers that are similar to threads
+but don't share memory,
+communicating only via messages. <a href="dart-isolate/dart-isolate-library.html">[...]</a>
+              </dd>
+            <h3>Web</h3>
+              <dt id="dart:html">
+                <span class="name"><a href="dart-html/dart-html-library.html">dart:html</a></span>               
+              </dt>
+              <dd>
+                HTML elements and other resources for web-based applications that need to
+interact with the browser and the DOM (Document Object Model). <a href="dart-html/dart-html-library.html">[...]</a>
+              </dd>
+              <dt id="dart:js">
+                <span class="name"><a href="dart-js/dart-js-library.html">dart:js</a></span>               
+              </dt>
+              <dd>
+                Low-level support for interoperating with JavaScript. <a href="dart-js/dart-js-library.html">[...]</a>
+              </dd>
+              <dt id="dart:js_util">
+                <span class="name"><a href="dart-js_util/dart-js_util-library.html">dart:js_util</a></span>               
+              </dt>
+              <dd>
+                Utility methods to manipulate <code>package:js</code> annotated JavaScript interop
+objects in cases where the name to call is not known at runtime. <a href="dart-js_util/dart-js_util-library.html">[...]</a>
+              </dd>
+          </dl>
+        </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    keepapp
+      1.0.1+2
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

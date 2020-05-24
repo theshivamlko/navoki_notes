@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the getNotes function from the Api library, for the Dart programming language.">
+  <title>getNotes function - Api library - Dart API</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../static-assets/github.css">
+  <link rel="stylesheet" href="../static-assets/styles.css">
+  <link rel="icon" href="../static-assets/favicon.png">
+
+</head>
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">keepapp</a></li>
+    <li><a href="../utils_Api/utils_Api-library.html">Api</a></li>
+    <li class="self-crumb">getNotes function</li>
+  </ol>
+  <div class="self-name">getNotes</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="../index.html">keepapp</a></li>
+      <li><a href="../utils_Api/utils_Api-library.html">Api</a></li>
+      <li class="self-crumb">getNotes function</li>
+    </ol>
+    
+    <h5>Api library</h5>
+    <ol>
+    
+    
+    
+      <li class="section-title"><a href="../utils_Api/utils_Api-library.html#constants">Constants</a></li>
+      <li><a href="../utils_Api/loginWithApiToken-constant.html">loginWithApiToken</a></li>
+      <li><a href="../utils_Api/passwordResetApi-constant.html">passwordResetApi</a></li>
+      <li><a href="../utils_Api/registerUserApi-constant.html">registerUserApi</a></li>
+      <li><a href="../utils_Api/signInApi-constant.html">signInApi</a></li>
+    
+      <li class="section-title"><a href="../utils_Api/utils_Api-library.html#properties">Properties</a></li>
+      <li><a href="../utils_Api/NOTE_API.html">NOTE_API</a></li>
+      <li><a href="../utils_Api/parent.html">parent</a></li>
+    
+      <li class="section-title"><a href="../utils_Api/utils_Api-library.html#functions">Functions</a></li>
+      <li><a href="../utils_Api/addNote.html">addNote</a></li>
+      <li><a href="../utils_Api/deleteNote.html">deleteNote</a></li>
+      <li><a href="../utils_Api/getNotes.html">getNotes</a></li>
+      <li><a href="../utils_Api/registerUser.html">registerUser</a></li>
+      <li><a href="../utils_Api/resetPassword.html">resetPassword</a></li>
+      <li><a href="../utils_Api/sendVerifyEmail.html">sendVerifyEmail</a></li>
+      <li><a href="../utils_Api/signInUser.html">signInUser</a></li>
+      <li><a href="../utils_Api/signInWithToken.html">signInWithToken</a></li>
+      <li><a href="../utils_Api/updateData.html">updateData</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-function">getNotes</span> function </h1></div>
+
+    <section class="multi-line-signature">
+        <span class="returntype"><a href="../dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../model_NoteModel/NoteModel-class.html">NoteModel</a></span>&gt;</span></span>&gt;</span></span>
+                <span class="name ">getNotes</span>
+(<wbr>)
+    </section>
+    <section class="desc markdown">
+      <p>return List of notes of user</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">Future&lt;List&lt;NoteModel&gt;&gt; getNotes() async {
+  try {
+    var response = await http.get(&quot;${NOTE_API}&quot;,
+        headers: {&quot;Authorization&quot;: &quot;Bearer ${Utils.loginToken}&quot;});
+    if (response.statusCode == 200) {
+      List&lt;NoteModel&gt; notesList = List();
+      Map map = json.decode(response.body);
+      List list = map[&#39;documents&#39;];
+      if (list != null &amp;&amp; !list.isEmpty) {
+        for (int i = 0; i &lt; list.length; i++) {
+          NoteModel noteModel = NoteModel.store(
+              map[&#39;documents&#39;][i][&#39;name&#39;].toString().replaceAll(parent, &quot;&quot;),
+              ((map[&#39;documents&#39;][i][&#39;fields&#39;] ?? Map())[&#39;title&#39;] ??
+                  Map())[&#39;stringValue&#39;],
+              ((map[&#39;documents&#39;][i][&#39;fields&#39;] ?? Map())[&#39;description&#39;] ??
+                  Map())[&#39;stringValue&#39;],
+              int.parse(
+                  ((map[&#39;documents&#39;][i][&#39;fields&#39;] ?? Map())[&#39;colorValue&#39;] ??
+                          Map())[&#39;stringValue&#39;] ??
+                      Colors.red.value.toString()));
+          noteModel.createTime = map[&#39;documents&#39;][i][&#39;createTime&#39;];
+          notesList.add(noteModel);
+        }
+      }
+      return notesList;
+    } else {
+      Map map = json.decode(response.body);
+      throw (UserMessageException(map[&#39;error&#39;][&#39;status&#39;]));
+    }
+  } catch (err) {
+    throw err;
+  }
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    keepapp
+      1.0.1+2
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../static-assets/typeahead.bundle.min.js"></script>
+<script src="../static-assets/highlight.pack.js"></script>
+<script src="../static-assets/URI.js"></script>
+<script src="../static-assets/script.js"></script>
+
+
+</body>
+
+</html>
