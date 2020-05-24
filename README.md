@@ -117,6 +117,7 @@ You can build your own project on this just by changing dart code in `lib` folde
 
 ## Contribution
 This project is open to all kinds of contribution in all of its categories.You can add more features and bug fixes in this code.
+**DO NOT** send PR for rename of file and variables, formatting code or other low-quality changes. **Focus on making this BIGGER!**
 
 ## Support
 If you found this project helpful then show some support by :star: the repo and subscribe to my YoutubeChannel and Newsletter for latest updates in dev world. It will **encourage** me to make more videos and tutorials.
