@@ -23,6 +23,8 @@ The is a **single code-base cross-platform app made on Flutter Framework with Fi
   <img src="https://i.imgur.com/QwN21XA.jpg" height="300px"  />
   <img src="https://i.imgur.com/xUVmaNa.jpg" height="300px"  />
 
+## Video
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/g-hPh6FPfgo/0.jpg)](https://www.youtube.com/watch?v=g-hPh6FPfgo)
 
 
 ## Getting Started
@@ -56,6 +58,17 @@ samples, guidance on mobile development, and a full API reference.
 - Also, install build tools for each platforms  to run on that platform. Follow links above.
 - **Flutter Desktop is not stable yet** so you might face some issue, till now I have faced few app crashes on desktop but feature is implemented and app is running.
 For Linux app you need to build project and run using ```flutter run -d linux```
+
+## Learning
+Few things I have used that you can work to understand flutter development.
+- Simple app state management
+- Using RestAPI
+- Firebase Auth and Cloud Firestore using Rest API
+- Staggered View
+- Local Storage
+
+You can build your own project on this just by changing dart code in `lib` folder.
+
 
 ### My Flutter and Tools version:
 ```flutter doctor -v```
