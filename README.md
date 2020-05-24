@@ -16,12 +16,7 @@ The is a **single code-base cross-platform app made on Flutter Framework with Fi
 
 ## Screenshots
 
-  <img src="https://i.imgur.com/PSNQnmR.jpg" height="300px"  />
-  <img src="https://i.imgur.com/1pRlTex.jpg" height="300px"  />
-  <img src="https://i.imgur.com/EHFHrOV.jpg" height="300px"  />
-  <img src="https://i.imgur.com/lOJUfc6.jpg" height="300px"  />
-  <img src="https://i.imgur.com/QwN21XA.jpg" height="300px"  />
-  <img src="https://i.imgur.com/xUVmaNa.jpg" height="300px"  />
+  <img src="https://i.imgur.com/PSNQnmR.jpg" height="300px"  /> <img src="https://i.imgur.com/1pRlTex.jpg" height="300px"  /> <img src="https://i.imgur.com/EHFHrOV.jpg" height="300px"  /> <img src="https://i.imgur.com/lOJUfc6.jpg" height="300px"  /> <img src="https://i.imgur.com/QwN21XA.jpg" height="300px"  /> <img src="https://i.imgur.com/xUVmaNa.jpg" height="300px"  />
 
 ## Video
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/g-hPh6FPfgo/0.jpg)](https://www.youtube.com/watch?v=g-hPh6FPfgo)
