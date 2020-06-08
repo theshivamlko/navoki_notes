@@ -148,5 +148,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-Navoki and Navoki logo are registered trademark of [navoki.com](https://navoki.com/). You are free to use the source code above.
+### Navoki and Navoki logo are registered trademark of [navoki.com](https://navoki.com/). You are free to use the source code above.
 
