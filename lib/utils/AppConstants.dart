@@ -4,7 +4,7 @@ class AppConstants {
   static const String AppName = "NavokiNotes";
 
   // TODO: Replace your key here
-  static const String API_KEY = "AIzaSyCIJoxJ6o-KMhxXlQIcLAdtz5J5WVKFSDI";
+  static const String API_KEY = "";
 
   static material.Color orangeColor = const material.Color(0xffff470b);
   static material.Color yellowColor = const material.Color(0xfffca10e);
