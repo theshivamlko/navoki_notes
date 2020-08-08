@@ -5,7 +5,7 @@
 Navoki Notes, a note app app, will sync data to cloud and on all devices. We have application for **Android, iOS, Web App, PWA, Windows, macOS, Linux** , so you can access data anywhere on any device. Its FREE to use.
 The is a **single code-base cross-platform app made on Flutter Framework with Firebase**.
 
-[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/Apache-2.0)  [![navoki-notes](https://snapcraft.io//navoki-notes/badge.svg)](https://snapcraft.io/navoki-notes)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://opensource.org/licenses/Apache-2.0)  [![navoki-notes](https://snapcraft.io//navoki-notes/badge.svg)](https://snapcraft.io/navoki-notes)
 
 [![Image](misc/googleplay.png)](https://play.google.com/store/apps/details?id=com.navoki.keepapp)  [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/navoki-notes)
 
