@@ -8,11 +8,15 @@ import 'package:keepapp/utils/Exceptions.dart';
 import 'package:keepapp/utils/Utils.dart';
 
 String parent =
-    "projects/navokitest/databases/(default)/documents/notes/${Utils.userId}/data/";
+    "projects/navoki-fc725/databases/(default)/documents/notes/${Utils.userId}/data/";
 
 /// To work on Notes List
 String NOTE_API =
-    "https://firestore.googleapis.com/v1/projects/navokitest/databases/(default)/documents/notes/${Utils.userId}/data/";
+    "https://firestore.googleapis.com/v1/projects/navoki-fc725/databases/(default)/documents/notes/${Utils.userId}/data/";
+
+/// To work on Notes List
+String USER_DATA_API =
+    "https://firestore.googleapis.com/v1/projects/navoki-fc725/databases/(default)/documents/notes/${Utils.userId}/";
 
 /// Register User
 const registerUserApi =
@@ -61,7 +65,8 @@ Future<List<NoteModel>> getNotes() async {
       throw (UserMessageException(map['error']['status']));
     }
   } catch (err) {
-    throw err;
+    print('getNotes catch $err');
+    throw (err);
   }
 }
 
@@ -83,6 +88,26 @@ Future<bool> addNote(NoteModel noteModel) async {
     }
   } catch (err) {
     throw err;
+  }
+}
+
+/// return add new note [noteModel]
+Future<bool> addLoginTime() async {
+  try {
+    print('addLoginTime');
+    var response = await http.patch("${USER_DATA_API}",
+        headers: {"Authorization": "Bearer ${Utils.loginToken}"},
+        body: json.encode({
+          "fields": {
+            "logintime": {"timestampValue":'REQUEST_TIME'},
+            //  "createdTime": {"stringValue":Utils.getServerTimeFormat(DateTime.now())}
+          }
+        }));
+    if (response.statusCode == 200) {
+      return true;
+    }
+  } catch (err) {
+    throw (err);
   }
 }
 
