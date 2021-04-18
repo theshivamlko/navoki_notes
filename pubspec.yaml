@@ -22,7 +22,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   provider: ^4.0.4
   intl: ^0.16.1
-  overlay_support: ^1.0.3
+  overlay_support: ^1.2.0
   flutter_svg: ^0.17.4
   cross_local_storage: ^1.1.1
 
