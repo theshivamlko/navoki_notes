@@ -20,8 +20,8 @@ class _LoginPageState extends State<LoginPage>
   /// Switch login/signUp section
   TabController tabController;
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController(text: 'shivamsrivastava.9@gmail.com');
+  TextEditingController passwordController = TextEditingController(text: 'qwerty');
 
   LoginBloc loginBloc;
   Future<String> tokenFuture;
@@ -499,57 +499,57 @@ class _LoginPageState extends State<LoginPage>
     TextEditingController emailController = TextEditingController();
     showDialog(
         context: context,
-        child: AlertDialog(
-          actions: [
-            GestureDetector(
-              onTap: () {
-                if (emailController.text != null &&
-                    emailController.text.isNotEmpty) {
-                  loginBloc.resetPassword(emailController.text);
-                  Navigator.pop(context);
-                }
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'SUBMIT',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).primaryColor),
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'CANCEL',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).primaryColor),
-                ),
-              ),
-            ),
-          ],
-          title: Text(
-            "Forgot Password?",
-            style: TextStyle(fontSize: 16),
-          ),
-          content: Container(
-            height: 70,
-            child: TextFormField(
-              maxLines: 1,
-              decoration: InputDecoration(
-                labelText: "Email",
-                border: new OutlineInputBorder(
-                  borderRadius: new BorderRadius.circular(10.0),
-                  borderSide: new BorderSide(),
-                ),
-              ),
-              controller: emailController,
+    builder: (context) => AlertDialog(
+      actions: [
+        GestureDetector(
+          onTap: () {
+            if (emailController.text != null &&
+                emailController.text.isNotEmpty) {
+              loginBloc.resetPassword(emailController.text);
+              Navigator.pop(context);
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'SUBMIT',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor),
             ),
           ),
-        ));
+        ),
+        GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'CANCEL',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor),
+            ),
+          ),
+        ),
+      ],
+      title: Text(
+        "Forgot Password?",
+        style: TextStyle(fontSize: 16),
+      ),
+      content: Container(
+        height: 70,
+        child: TextFormField(
+          maxLines: 1,
+          decoration: InputDecoration(
+            labelText: "Email",
+            border: new OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(10.0),
+              borderSide: new BorderSide(),
+            ),
+          ),
+          controller: emailController,
+        ),
+      ),
+    ),);
   }
 }

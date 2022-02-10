@@ -48,6 +48,7 @@ class LoginBloc extends ChangeNotifier {
         isLoading = false;
         localDataStorage.saveToken(token);
         localDataStorage.saveUserId(Utils.userId);
+        Api.addLoginTime();
         notifyListeners();
         /*  Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => HomePage(token)));*/
@@ -77,6 +78,8 @@ class LoginBloc extends ChangeNotifier {
         localDataStorage.saveToken(token);
         localDataStorage.saveUserId(Utils.userId);
         notifyListeners();
+
+        Api.addLoginTime();
 
         openHomePage(token);
       }
