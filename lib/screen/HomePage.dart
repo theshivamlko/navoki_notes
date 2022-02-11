@@ -193,6 +193,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             onSelected: (String result) {
               Utils.loginToken = null;
               homeBloc.localDataStorage.clear();
+              homeBloc.notesList.clear();
+              print("Logout Token ${Utils.loginToken}");
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

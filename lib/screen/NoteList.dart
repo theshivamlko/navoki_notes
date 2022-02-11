@@ -49,8 +49,8 @@ class _NoteListState extends State<NoteList> {
     return Container(
       child: LayoutBuilder(builder: (context, snapshot) {
         return MasonryGridView.count(
-         // crossAxisCount: getCrossAxisCount(),
-          crossAxisCount: 2,
+         crossAxisCount: getCrossAxisCount(),
+        //  crossAxisCount: 3,
           mainAxisSpacing: 2,
           crossAxisSpacing: 2,
      /*     staggeredTileBuilder: (int index) {
@@ -107,14 +107,12 @@ class _NoteListState extends State<NoteList> {
   /// CrossAxisCount depends on screen size
   int getCrossAxisCount() {
     if (diff < -100) {
+      return 2;
+    } else if (diff > -100 && diff <= 600) {
       return 4;
-    } else if (diff > -100 && diff <= 200) {
+    }  else if (diff < 1000) {
       return 6;
-    } else if (diff < 600) {
-      return 8;
-    } else if (diff < 1000) {
-      return 10;
     }
-    return 4;
+    return 2;
   }
 }
