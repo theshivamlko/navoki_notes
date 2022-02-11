@@ -7,16 +7,16 @@ import 'package:keepapp/utils/Utils.dart';
 
 /// Bloc for [HomePage]
 class HomeBloc extends ChangeNotifier {
-  List<NoteModel> notesList;
+  List<NoteModel> notesList=List.empty(growable: true);
 
-  NotesBloc notesBloc;
-  String token;
-  String errorMsg;
+  NotesBloc notesBloc=NotesBloc.empty();
+ // String token;
+  String? errorMsg;
 
   LocalDataStorage localDataStorage = LocalDataStorage();
 
   /// return notes list to UI
-  bool getNotes() {
+  void getNotes() {
     Utils.showToast("Refreshing...");
     Api.getNotes().then((list) {
       if (list != null && list.isNotEmpty) {
@@ -35,7 +35,7 @@ class HomeBloc extends ChangeNotifier {
 
   /// add new note locally to UI
   void appendList() {
-    notesList.insert(0, notesBloc.note);
+    notesList.insert(0, notesBloc.note!);
     notifyListeners();
   }
 

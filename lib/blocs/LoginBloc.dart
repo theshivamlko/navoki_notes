@@ -9,9 +9,9 @@ import 'package:keepapp/blocs/HomeBloc.dart';
 import 'package:provider/provider.dart';
 
 class LoginBloc extends ChangeNotifier {
-  List<NoteModel> notesList = List();
-  BuildContext context;
-  String token;
+  List<NoteModel> notesList =List.empty(growable: true);
+  BuildContext? context;
+  String? token;
   LocalDataStorage localDataStorage = LocalDataStorage();
   bool isLoading = false;
 
@@ -22,7 +22,7 @@ class LoginBloc extends ChangeNotifier {
     });
   }
 
-  Future<String> getToken() async {
+  Future<String?> getToken() async {
     //  print( 'getToken1111');
     //  await localDataStorage.clear();
     Utils.loginToken = await localDataStorage.getToken();
@@ -30,8 +30,8 @@ class LoginBloc extends ChangeNotifier {
     Utils.userId = await localDataStorage.getUserId();
     //  print(  Utils.userId);
     if (Utils.loginToken != null) {
-      bool isValid = await Api.signInWithToken(Utils.loginToken);
-      if (isValid ?? false) openHomePage(token);
+      bool isValid = await Api.signInWithToken(Utils.loginToken!);
+      if (isValid ?? false) openHomePage(token!);
       else
          return null;
     }
@@ -47,7 +47,7 @@ class LoginBloc extends ChangeNotifier {
       if (token != null) {
         isLoading = false;
         localDataStorage.saveToken(token);
-        localDataStorage.saveUserId(Utils.userId);
+        localDataStorage.saveUserId(Utils.userId!);
         Api.addLoginTime();
         notifyListeners();
         /*  Navigator.pushReplacement(
@@ -64,7 +64,7 @@ class LoginBloc extends ChangeNotifier {
 
   void openHomePage(String token) {
     Navigator.pushReplacement(
-      context,
+      context!,
       MaterialPageRoute(builder: (context) => HomePage(token)),
     );
   }
@@ -76,7 +76,7 @@ class LoginBloc extends ChangeNotifier {
       if (token != null) {
         isLoading = false;
         localDataStorage.saveToken(token);
-        localDataStorage.saveUserId(Utils.userId);
+        localDataStorage.saveUserId(Utils.userId!);
         notifyListeners();
 
         Api.addLoginTime();

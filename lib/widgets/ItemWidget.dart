@@ -14,7 +14,7 @@ class ItemWidget extends StatefulWidget {
 }
 
 class _ItemWidgetState extends State<ItemWidget> {
-  Image background;
+  Image? background;
 
   @override
   void initState() {

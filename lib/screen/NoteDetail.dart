@@ -10,10 +10,10 @@ import 'package:provider/provider.dart';
 
 /// Note Card details UI
 class NoteDetail extends StatefulWidget {
-  int index;
+  int? index;
   ClickCallback onCancel;
 
-  NoteDetail({this.index, this.onCancel});
+  NoteDetail({  this.index, required this.onCancel});
 
   @override
   _NoteDetailState createState() => _NoteDetailState();
@@ -22,16 +22,16 @@ class NoteDetail extends StatefulWidget {
 class _NoteDetailState extends State<NoteDetail> {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController titleController = TextEditingController();
-   HomeBloc homeBloc;
-  Device device;
+  late  HomeBloc homeBloc;
+  late Device device;
 
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance.addPostFrameCallback((_) {
+    SchedulerBinding.instance!.addPostFrameCallback((_) {
       if (homeBloc.notesBloc.note != null) {
-        descriptionController.text = homeBloc.notesBloc.note.description;
-        titleController.text = homeBloc.notesBloc.note.title;
+        descriptionController.text = homeBloc.notesBloc.note!.description!;
+        titleController.text = homeBloc.notesBloc.note!.title!;
       }
       setState(() {});
     });
@@ -52,17 +52,17 @@ class _NoteDetailState extends State<NoteDetail> {
       child: Container(
         height: device.deviceHeight,
         width: device.deviceWidth ,
-      color: Color(homeBloc.notesBloc.note.colorValue),
+      color: Color(homeBloc.notesBloc.note!.colorValue!),
         child: Stack(
           children: [
             Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 AppBar(
-                  backgroundColor: Color(homeBloc.notesBloc.note.colorValue),
+                  backgroundColor: Color(homeBloc.notesBloc.note!.colorValue!),
                   elevation: 0,
                   actions: [
-                    homeBloc.notesBloc.note.itemId != null
+                    homeBloc.notesBloc.note!.itemId != null
                         ? IconButton(
                             onPressed: () {
                               homeBloc.notesBloc.delete(context);
@@ -157,7 +157,7 @@ class _NoteDetailState extends State<NoteDetail> {
 
   /// Change selected color from color picker box
   void changeColor(Color color) => setState(() {
-        homeBloc.notesBloc.note.colorValue = color.value;
+        homeBloc.notesBloc.note!.colorValue = color.value;
       });
 
   /// Opens color picker box
@@ -169,7 +169,7 @@ class _NoteDetailState extends State<NoteDetail> {
           title: Text('Select a color'),
           content: SingleChildScrollView(
             child: BlockPicker(
-              pickerColor: Color(homeBloc.notesBloc.note.colorValue),
+              pickerColor: Color(homeBloc.notesBloc.note!.colorValue!),
               onColorChanged: changeColor,
             ),
           ),
@@ -180,13 +180,13 @@ class _NoteDetailState extends State<NoteDetail> {
 
   /// add or update or delete a note
   void manageNote() {
-    homeBloc.notesBloc.note.title = titleController.text;
-    homeBloc.notesBloc.note.description = descriptionController.text;
-    if ((homeBloc.notesBloc.note.title != null &&
-            homeBloc.notesBloc.note.title.trim().isNotEmpty) ||
-        (homeBloc.notesBloc.note.description != null &&
-            homeBloc.notesBloc.note.description.trim().isNotEmpty)) {
-      if (homeBloc.notesBloc.note.itemId == null) {
+    homeBloc.notesBloc.note!.title = titleController.text;
+    homeBloc.notesBloc.note!.description = descriptionController.text;
+    if ((homeBloc.notesBloc.note!.title != null &&
+            homeBloc.notesBloc.note!.title!.trim().isNotEmpty) ||
+        (homeBloc.notesBloc.note!.description != null &&
+            homeBloc.notesBloc.note!.description!.trim().isNotEmpty)) {
+      if (homeBloc.notesBloc.note!.itemId == null) {
         homeBloc.notesBloc.addNote(context);
         widget.onCancel(null, NoteActions.ADD, true);
       } else {

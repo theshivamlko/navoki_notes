@@ -27,20 +27,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  HomeBloc homeBloc;
+  late HomeBloc  homeBloc;
   bool isMobile = true;
   bool isNight = false;
   bool showNote = false;
-  Timer timer;
-  AnimationController _controller;
-  Animation<Color> animation, animation2;
-  Device device;
+  Timer? timer;
+ late AnimationController _controller;
+  late Animation<Color?> animation, animation2;
+  Device? device;
 
   @override
   void initState() {
     super.initState();
 
-    SchedulerBinding.instance.addPostFrameCallback((_) {
+    SchedulerBinding.instance!.addPostFrameCallback((_) {
       homeBloc.getNotes();
     });
 
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     Utils.deviceHeight = MediaQuery.of(context).size.height;
     Utils.deviceWidth = MediaQuery.of(context).size.width;
-    isMobile = Utils.deviceWidth > Utils.deviceHeight ? false : true;
+    isMobile = Utils.deviceWidth! > Utils.deviceHeight! ? false : true;
 
     device = Device(
         MediaQuery.of(context).size.height, MediaQuery.of(context).size.width);
@@ -237,7 +237,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               padding: const EdgeInsets.all(10.0),
               child: Consumer<HomeBloc>(builder: (context, bloc, child) {
                 if (homeBloc.errorMsg != null)
-                  return getErrorView(homeBloc.errorMsg);
+                  return getErrorView(homeBloc.errorMsg!);
 
                 if (homeBloc.notesList == null) return Utils.loadingView(40);
 
@@ -311,7 +311,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   /// Dialog for Add/Edit Note
-  void showAddNoteDialog({ClickCallback onCancel}) {
+  void showAddNoteDialog({required ClickCallback onCancel}) {
     var data2, param2, refresh2;
     showDialog(
         context: context,
@@ -326,8 +326,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Container(
-                width: device.deviceWidth / 2,
-                height: device.deviceHeight * 0.60,
+                width: device!.deviceWidth / 2,
+                height: device!.deviceHeight * 0.60,
                 child: NoteDetail(
                   onCancel: (data, param, refresh) {
                     param2 = param;

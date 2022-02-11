@@ -18,14 +18,14 @@ class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
 
   /// Switch login/signUp section
-  TabController tabController;
+  late TabController tabController;
 
   TextEditingController emailController = TextEditingController(text: 'shivamsrivastava.9@gmail.com');
   TextEditingController passwordController = TextEditingController(text: 'qwerty');
 
-  LoginBloc loginBloc;
-  Future<String> tokenFuture;
-  Device device;
+  late LoginBloc loginBloc;
+  late Future<String?>? tokenFuture;
+  late Device device;
 
   final List<Tab> tabLabel = <Tab>[
     Tab(
@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage>
 
     tabController = TabController(length: 2, vsync: this);
     tokenFuture = null;
-    SchedulerBinding.instance.addPostFrameCallback((_) {
+    SchedulerBinding.instance!.addPostFrameCallback((_) {
       tokenFuture = loginBloc.getToken();
       setState(() {});
     });

@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 /// Note List UI
 class NoteList extends StatefulWidget {
-  ClickCallback onSelect;
+  ClickCallback? onSelect;
 
   NoteList({this.onSelect});
 
@@ -23,10 +23,10 @@ class NoteList extends StatefulWidget {
 class _NoteListState extends State<NoteList> {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController titleController = TextEditingController();
-  HomeBloc homeBloc;
-  int diff;
-  Device device;
-  Timer timer;
+  late HomeBloc homeBloc;
+  late int diff;
+  late Device device;
+  late  Timer timer;
 
   @override
   void initState() {
@@ -48,9 +48,9 @@ class _NoteListState extends State<NoteList> {
   Widget getStaggeredView() {
     return Container(
       child: LayoutBuilder(builder: (context, snapshot) {
-        return StaggeredGridView.countBuilder(
+        return MasonryGridView.count(
           crossAxisCount: getCrossAxisCount(),
-          staggeredTileBuilder: (int index) {
+     /*     staggeredTileBuilder: (int index) {
             int vertical = 2;
             if (homeBloc.notesList[index].description != null &&
                 '\n'.allMatches(homeBloc.notesList[index].description).length >
@@ -58,7 +58,7 @@ class _NoteListState extends State<NoteList> {
               vertical = 3;
             }
             return StaggeredTile.count(2, vertical);
-          },
+          },*/
           itemCount: homeBloc.notesList.length,
           itemBuilder: (BuildContext context, int index) {
             return InkWell(
@@ -95,7 +95,7 @@ class _NoteListState extends State<NoteList> {
     if (homeBloc.notesBloc == null) homeBloc.notesBloc = NotesBloc.empty();
     noteModel.itemIndex = index;
     homeBloc.notesBloc.note = noteModel;
-    widget.onSelect(null, null, true);
+    widget.onSelect!(null, null, true);
   }
 
   /// CrossAxisCount depends on screen size

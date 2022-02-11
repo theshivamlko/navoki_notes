@@ -8,10 +8,10 @@ import 'package:overlay_support/overlay_support.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
-  static double deviceHeight;
-  static double deviceWidth;
-  static String loginToken;
-  static String userId;
+  static double? deviceHeight;
+  static double? deviceWidth;
+  static String? loginToken;
+  static String? userId;
 
   /// showToast at top of screen [msg]
   static void showToast(String msg) {
@@ -57,7 +57,7 @@ class Utils {
     } else if (e is NoDataFound || e is IOException) {
       return 'No data found!';
     } else if (e.runtimeType.toString() == "UserMessageException") {
-      UserMessageException exception = e;
+      UserMessageException exception = e as UserMessageException;
       return exception.message;
     }
 

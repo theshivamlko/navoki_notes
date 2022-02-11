@@ -37,10 +37,10 @@ const passwordResetApi =
 /// return List of notes of user
 Future<List<NoteModel>> getNotes() async {
   try {
-    var response = await http.get("${NOTE_API}",
+    var response = await http.get(Uri.parse(NOTE_API),
         headers: {"Authorization": "Bearer ${Utils.loginToken}"});
     if (response.statusCode == 200) {
-      List<NoteModel> notesList = List();
+      List<NoteModel> notesList = List.empty(growable: true);
       Map map = json.decode(response.body);
       List list = map['documents'];
       if (list != null && !list.isEmpty) {
@@ -73,7 +73,7 @@ Future<List<NoteModel>> getNotes() async {
 /// return add new note [noteModel]
 Future<bool> addNote(NoteModel noteModel) async {
   try {
-    var response = await http.post("${NOTE_API}",
+    var response = await http.post(Uri.parse(NOTE_API),
         headers: {"Authorization": "Bearer ${Utils.loginToken}"},
         body: json.encode({
           "fields": {
@@ -86,6 +86,7 @@ Future<bool> addNote(NoteModel noteModel) async {
     if (response.statusCode == 200) {
       return true;
     }
+    return false;
   } catch (err) {
     throw err;
   }
@@ -95,7 +96,7 @@ Future<bool> addNote(NoteModel noteModel) async {
 Future<bool> addLoginTime() async {
   try {
     print('addLoginTime');
-    var response = await http.patch("${USER_DATA_API}",
+    var response = await http.patch(Uri.parse(USER_DATA_API),
         headers: {"Authorization": "Bearer ${Utils.loginToken}"},
         body: json.encode({
           "fields": {
@@ -106,6 +107,7 @@ Future<bool> addLoginTime() async {
     if (response.statusCode == 200) {
       return true;
     }
+    return false;
   } catch (err) {
     throw (err);
   }
@@ -113,10 +115,10 @@ Future<bool> addLoginTime() async {
 
 /// update existing note [noteModel]
 Future<bool> updateData(NoteModel noteModel) async {
-  String updateApi = "$NOTE_API" + noteModel.itemId;
+  String updateApi = "$NOTE_API" + noteModel.itemId!;
 
   try {
-    var response = await http.patch(updateApi,
+    var response = await http.patch(Uri.parse(updateApi),
         headers: {"Authorization": "Bearer ${Utils.loginToken}"},
         body: json.encode({
           "fields": {
@@ -128,6 +130,7 @@ Future<bool> updateData(NoteModel noteModel) async {
     if (response.statusCode == 200) {
       return true;
     }
+    return false;
   } catch (err) {
     throw err;
   }
@@ -137,12 +140,13 @@ Future<bool> updateData(NoteModel noteModel) async {
 Future<bool> deleteNote(NoteModel noteModel) async {
   try {
     var response = await http.delete(
-      "${NOTE_API}${noteModel.itemId}",
+      Uri.parse("${NOTE_API}${noteModel.itemId}"),
       headers: {"Authorization": "Bearer ${Utils.loginToken}"},
     );
     if (response.statusCode == 200) {
       return true;
     }
+    return false;
   } catch (err) {
     throw err;
   }
@@ -151,7 +155,7 @@ Future<bool> deleteNote(NoteModel noteModel) async {
 /// Sign-in existing user with  [email] and [password]
 Future<String> signInUser(String email, String password) async {
   try {
-    var response = await http.post(signInApi,
+    var response = await http.post(Uri.parse(signInApi),
         body: json.encode({
           AppConstants.EMAIL: email,
           AppConstants.PASSWORD: password,
@@ -161,7 +165,7 @@ Future<String> signInUser(String email, String password) async {
       Map map = json.decode(response.body);
       Utils.loginToken = map['idToken'];
       Utils.userId = map['localId'];
-      return Utils.loginToken;
+      return Utils.loginToken!;
     } else {
       Map map = json.decode(response.body);
       throw (UserMessageException(map['error']['message']));
@@ -174,7 +178,7 @@ Future<String> signInUser(String email, String password) async {
 /// Sign-up new user with [email] and [password]
 Future<String> registerUser(String email, String password) async {
   try {
-    var response = await http.post(registerUserApi,
+    var response = await http.post(Uri.parse(registerUserApi),
         body: json.encode(
             {AppConstants.EMAIL: email, AppConstants.PASSWORD: password}));
 
@@ -182,7 +186,7 @@ Future<String> registerUser(String email, String password) async {
       Map map = json.decode(response.body);
       Utils.loginToken = map['idToken'];
       Utils.userId = map['localId'];
-      return Utils.loginToken;
+      return Utils.loginToken!;
     } else {
       Map map = json.decode(response.body);
       throw (UserMessageException(map['error']['message']));
@@ -190,13 +194,13 @@ Future<String> registerUser(String email, String password) async {
   } catch (err) {
     throw err;
   }
-  return null;
+
 }
 
 /// Sign-in existing user with  [token]
 Future<bool> signInWithToken(String token) async {
   try {
-    var response = await http.post(loginWithApiToken,
+    var response = await http.post(Uri.parse(loginWithApiToken),
         body: json.encode({"idToken": token}));
 
     if (response.statusCode == 200) {
@@ -211,7 +215,7 @@ Future<bool> signInWithToken(String token) async {
 /// Reset password with [email]
 Future<bool> resetPassword(String email) async {
   try {
-    var response = await http.post(passwordResetApi,
+    var response = await http.post(Uri.parse(passwordResetApi),
         body: json.encode({
           AppConstants.EMAIL: email,
           AppConstants.REQUEST_TYPE: "PASSWORD_RESET"
@@ -228,7 +232,7 @@ Future<bool> resetPassword(String email) async {
 /// send Email verification [email]
 Future<bool> sendVerifyEmail(String email) async {
   try {
-    var response = await http.post(passwordResetApi,
+    var response = await http.post(Uri.parse(passwordResetApi),
         body: json.encode({
           AppConstants.EMAIL: email,
           AppConstants.REQUEST_TYPE: "VERIFY_EMAIL"
