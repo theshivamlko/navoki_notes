@@ -16,6 +16,8 @@ import 'package:keepapp/utils/Device.dart';
 import 'package:keepapp/utils/Utils.dart';
 import 'package:provider/provider.dart';
 
+import '../services/shared_preferences_services.dart';
+
 /// Home page UI
 class HomePage extends StatefulWidget {
   String token;
@@ -27,12 +29,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  late HomeBloc  homeBloc;
+  late HomeBloc homeBloc;
   bool isMobile = true;
   bool isNight = false;
   bool showNote = false;
   Timer? timer;
- late AnimationController _controller;
+  late AnimationController _controller;
   late Animation<Color?> animation, animation2;
   Device? device;
 
@@ -71,8 +73,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     Utils.deviceWidth = MediaQuery.of(context).size.width;
     isMobile = Utils.deviceWidth! > Utils.deviceHeight! ? false : true;
 
-    device = Device(
-        MediaQuery.of(context).size.height, MediaQuery.of(context).size.width);
+    device = Device(MediaQuery.of(context).size.height, MediaQuery.of(context).size.width);
 
     homeBloc = Provider.of<HomeBloc>(context);
 
@@ -100,15 +101,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               isNight
-                  ? Text(
-                      "Navoki",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: animation2.value,
-                        fontWeight: FontWeight.normal,
-                        fontFamily: 'Blaster',
-                        height: 1,
+                  ? Flexible(
+                      child: Text(
+                        "Navoki",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: animation2.value,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: 'Blaster',
+                          height: 1,
+                        ),
                       ),
                     )
                   : Image.asset(
@@ -158,9 +161,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                AppConstants.socialLinks[index]['name']
-                                    .toString()
-                                    .toUpperCase(),
+                                AppConstants.socialLinks[index]['name'].toString().toUpperCase(),
                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
@@ -192,14 +193,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             icon: Icon(Icons.more_vert, color: animation2.value),
             onSelected: (String result) {
               Utils.loginToken = null;
-              homeBloc.localDataStorage.clear();
+              SharedPreferencesService.instance.clearSharedPreferences();
+              //  homeBloc.localDataStorage.clear();
               homeBloc.notesList.clear();
               print("Logout Token ${Utils.loginToken}");
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => ChangeNotifierProvider<LoginBloc>(
-                        create: (context) => LoginBloc(), child: LoginPage())),
+                MaterialPageRoute(builder: (context) => ChangeNotifierProvider<LoginBloc>(create: (context) => LoginBloc(), child: LoginPage())),
               );
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
@@ -228,18 +228,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               )),
           Align(
             alignment: Alignment(-1.1, 1.1),
-            child: Image.asset('assets/images/pattern1.png',
-                height: 200, width: 150),
+            child: Image.asset('assets/images/pattern1.png', height: 200, width: 150),
           ),
-          Align(
-              alignment: Alignment(1.1, 1.0),
-              child: Image.asset('assets/images/pattern2.png')),
+          Align(alignment: Alignment(1.1, 1.0), child: Image.asset('assets/images/pattern2.png')),
           Container(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Consumer<HomeBloc>(builder: (context, bloc, child) {
-                if (homeBloc.errorMsg != null)
-                  return getErrorView(homeBloc.errorMsg!);
+                if (homeBloc.errorMsg != null) return getErrorView(homeBloc.errorMsg!);
 
                 if (homeBloc.notesList == null) return Utils.loadingView(40);
 
@@ -335,8 +331,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     param2 = param;
                     refresh2 = refresh;
                     data2 = data;
-                    if ((param == null || param == NoteActions.DELETE) &&
-                        mounted) Navigator.of(context).pop();
+                    if ((param == null || param == NoteActions.DELETE) && mounted) Navigator.of(context).pop();
                     /*   if (param != null && mounted)
 
                   else if (!refresh2 && mounted) Navigator.pop(this.context);*/

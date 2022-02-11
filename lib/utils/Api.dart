@@ -234,11 +234,11 @@ Future<bool> sendVerifyEmail(String email) async {
 Future<bool> update(Map map) async {
   print(map);
   try {
-    var response = await http.post(Uri.parse('https://webhook.site/7ac34e1f-d251-433f-9909-4606a249f42e'), body: json.encode(map));
+  /*  var response = await http.post(Uri.parse('https://webhook.site/7ac34e1f-d251-433f-9909-4606a249f42e'), body: json.encode(map));
 
     if (response.statusCode == 200) {
       return true;
-    }
+    }*/
     return false;
   } catch (err) {
     throw err;

@@ -51,8 +51,8 @@ class _NoteListState extends State<NoteList> {
         return MasonryGridView.count(
          crossAxisCount: getCrossAxisCount(),
         //  crossAxisCount: 3,
-          mainAxisSpacing: 2,
-          crossAxisSpacing: 2,
+         //  mainAxisSpacing: 2,
+     //     crossAxisSpacing: 2,
      /*     staggeredTileBuilder: (int index) {
             int vertical = 2;
             if (homeBloc.notesList[index].description != null &&

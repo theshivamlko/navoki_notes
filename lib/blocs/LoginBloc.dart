@@ -2,18 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keepapp/model/NoteModel.dart';
 import 'package:keepapp/screen/HomePage.dart';
+import 'package:keepapp/services/shared_preferences_services.dart';
 import 'package:keepapp/utils/Api.dart' as Api;
 import 'package:keepapp/utils/LocalDataStorage.dart';
 import 'package:keepapp/utils/Utils.dart';
 import 'package:keepapp/blocs/HomeBloc.dart';
 import 'package:provider/provider.dart';
 
+import '../utils/AppConstants.dart';
+
 class LoginBloc extends ChangeNotifier {
   List<NoteModel> notesList =List.empty(growable: true);
   BuildContext? context;
-  String? token;
   LocalDataStorage localDataStorage = LocalDataStorage();
   bool isLoading = false;
+  bool isAnimating = true;
 
   void resetPassword(String email) {
     Api.resetPassword(email).then((value) {
@@ -21,19 +24,27 @@ class LoginBloc extends ChangeNotifier {
     }).catchError((onError) {
     });
   }
+  void showLoginForm() {
+    isAnimating=false;
+    notifyListeners();
+  }
 
   Future<String?> getToken() async {
     //  print( 'getToken1111');
     //  await localDataStorage.clear();
-    Utils.loginToken = await localDataStorage.getToken();
-    //  print( Utils.loginToken);
-    Utils.userId = await localDataStorage.getUserId();
-    //  print(  Utils.userId);
+  //  Utils.loginToken = await localDataStorage.getToken();
+    Utils.loginToken =  SharedPreferencesService.instance.getStringData(AppConstants.API_TOKEN);
+     print("getToken");
+     print( Utils.loginToken);
+    Utils.userId = SharedPreferencesService.instance.getStringData(AppConstants.LOCAL_ID);
+     print(  Utils.userId);
     if (Utils.loginToken != null) {
       bool? isValid = await Api.signInWithToken(Utils.loginToken!);
-      if (isValid) openHomePage(token!);
-      else
-         return null;
+      if (isValid) openHomePage(Utils.loginToken!);
+      else {
+        showLoginForm();
+        return null;
+      }
     }
 
     return Utils.loginToken;
@@ -46,8 +57,9 @@ class LoginBloc extends ChangeNotifier {
     Api.signInUser(email, password).then((token) {
       if (token != null) {
         isLoading = false;
-        localDataStorage.saveToken(token);
-        localDataStorage.saveUserId(Utils.userId!);
+        SharedPreferencesService.instance.saveStringData(AppConstants.API_TOKEN,token);
+     //   localDataStorage.saveUserId(Utils.userId!);
+        SharedPreferencesService.instance.saveStringData(AppConstants.LOCAL_ID,Utils.userId!);
         Api.addLoginTime();
         notifyListeners();
         /*  Navigator.pushReplacement(
@@ -75,8 +87,10 @@ class LoginBloc extends ChangeNotifier {
     Api.registerUser(email, password).then((token) {
       if (token != null) {
         isLoading = false;
-        localDataStorage.saveToken(token);
-        localDataStorage.saveUserId(Utils.userId!);
+        SharedPreferencesService.instance.saveStringData(AppConstants.API_TOKEN,token);
+     //   localDataStorage.saveToken(token);
+      //  localDataStorage.saveUserId(Utils.userId!);
+        SharedPreferencesService.instance.saveStringData(AppConstants.LOCAL_ID,Utils.userId!);
         notifyListeners();
 
         Api.addLoginTime();

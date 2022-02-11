@@ -35,11 +35,12 @@ class _ItemWidgetState extends State<ItemWidget> {
         fit: StackFit.expand,
         children: [
           Container(
+              padding: EdgeInsets.all(5.0),
               child: Image.asset(
             'assets/images/ic_${widget.noteModel.colorValue}.png',
             height: 150,
             width: 150,
-            fit: BoxFit.fitHeight,
+            fit: BoxFit.fill,
           )),
           Padding(
             padding: const EdgeInsets.all(20.0),
@@ -47,7 +48,7 @@ class _ItemWidgetState extends State<ItemWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
                     widget.noteModel.title ?? '',
                     maxLines: 1,

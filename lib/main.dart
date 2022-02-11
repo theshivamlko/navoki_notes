@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:keepapp/blocs/HomeBloc.dart';
 import 'package:keepapp/blocs/LoginBloc.dart';
 import 'package:keepapp/screen/LoginPage.dart';
+import 'package:keepapp/services/shared_preferences_services.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,8 @@ Future<void> main() async {
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   }
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferencesService.instance.initialize();
 
   runApp(MultiProvider(
     providers: [
