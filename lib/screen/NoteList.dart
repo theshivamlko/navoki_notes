@@ -49,7 +49,10 @@ class _NoteListState extends State<NoteList> {
     return Container(
       child: LayoutBuilder(builder: (context, snapshot) {
         return MasonryGridView.count(
-          crossAxisCount: getCrossAxisCount(),
+         // crossAxisCount: getCrossAxisCount(),
+          crossAxisCount: 2,
+          mainAxisSpacing: 2,
+          crossAxisSpacing: 2,
      /*     staggeredTileBuilder: (int index) {
             int vertical = 2;
             if (homeBloc.notesList[index].description != null &&
@@ -61,8 +64,11 @@ class _NoteListState extends State<NoteList> {
           },*/
           itemCount: homeBloc.notesList.length,
           itemBuilder: (BuildContext context, int index) {
+
+
             return InkWell(
               onTap: () {
+
                 selectCard(homeBloc.notesList[index], index);
               },
               child: ItemWidget(homeBloc.notesList[index], device),

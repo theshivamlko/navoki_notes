@@ -30,8 +30,8 @@ class _NoteDetailState extends State<NoteDetail> {
     super.initState();
     SchedulerBinding.instance!.addPostFrameCallback((_) {
       if (homeBloc.notesBloc.note != null) {
-        descriptionController.text = homeBloc.notesBloc.note!.description!;
-        titleController.text = homeBloc.notesBloc.note!.title!;
+        descriptionController.text = homeBloc.notesBloc.note!.description??"";
+        titleController.text = homeBloc.notesBloc.note!.title??"";
       }
       setState(() {});
     });

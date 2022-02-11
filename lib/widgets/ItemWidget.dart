@@ -29,7 +29,6 @@ class _ItemWidgetState extends State<ItemWidget> {
         fit: StackFit.expand,
         children: [
           Container(
-              padding: EdgeInsets.all(5.0),
               child: Image.asset(
                 'assets/images/ic_${widget.noteModel.colorValue}.png',
                 height: 150,

@@ -6,7 +6,7 @@ import 'package:keepapp/utils/AppConstants.dart';
 import 'package:keepapp/utils/Device.dart';
 import 'package:keepapp/utils/Utils.dart';
 import 'package:provider/provider.dart';
-import 'package:tinycolor/tinycolor.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 
 /// LoginPage UI
 class LoginPage extends StatefulWidget {

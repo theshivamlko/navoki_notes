@@ -18,15 +18,15 @@ class LocalDataStorage {
   }
 
   /// getToken
-  Future<String> getToken() async {
+  Future<String?> getToken() async {
     prefs = await LocalStorage.getInstance();
-    return prefs!.getString(AppConstants.API_TOKEN)! ;
+    return prefs!.getString(AppConstants.API_TOKEN) ;
   }
 
   /// getUserId
-  Future<String> getUserId() async {
+  Future<String?> getUserId() async {
     prefs = await LocalStorage.getInstance();
-    return prefs!.getString(AppConstants.LOCAL_ID)! ;
+    return prefs!.getString(AppConstants.LOCAL_ID) ;
   }
 
   /// clear local app data

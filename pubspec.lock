@@ -163,6 +163,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.12"
+  lint:
+    dependency: transitive
+    description:
+      name: lint
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.8.2"
   matcher:
     dependency: transitive
     description:
@@ -253,7 +260,7 @@ packages:
       name: pigment
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.4"
   platform:
     dependency: transitive
     description:
@@ -392,13 +399,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.8"
-  tinycolor:
+  tinycolor2:
     dependency: "direct main"
     description:
-      name: tinycolor
+      name: tinycolor2
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "2.0.0"
   transformer_page_view:
     dependency: transitive
     description:

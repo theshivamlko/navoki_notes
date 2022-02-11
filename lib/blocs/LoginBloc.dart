@@ -30,8 +30,8 @@ class LoginBloc extends ChangeNotifier {
     Utils.userId = await localDataStorage.getUserId();
     //  print(  Utils.userId);
     if (Utils.loginToken != null) {
-      bool isValid = await Api.signInWithToken(Utils.loginToken!);
-      if (isValid ?? false) openHomePage(token!);
+      bool? isValid = await Api.signInWithToken(Utils.loginToken!);
+      if (isValid) openHomePage(token!);
       else
          return null;
     }
