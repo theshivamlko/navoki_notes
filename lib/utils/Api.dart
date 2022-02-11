@@ -7,7 +7,7 @@ import 'package:keepapp/utils/AppConstants.dart';
 import 'package:keepapp/utils/Exceptions.dart';
 import 'package:keepapp/utils/Utils.dart';
 
-String parent = "projects/navoki-fc725/databases/(default)/documents/notes/${Utils.userId}/data/";
+String get parent => "projects/navoki-fc725/databases/(default)/documents/notes/${Utils.userId}/data/";
 
 /// To work on Notes List
 String get NOTE_API => "https://firestore.googleapis.com/v1/projects/navoki-fc725/databases/(default)/documents/notes/${Utils.userId}/data/";
@@ -107,6 +107,10 @@ Future<bool> addLoginTime() async {
 /// update existing note [noteModel]
 Future<bool> updateData(NoteModel noteModel) async {
   String updateApi = "$NOTE_API" + noteModel.itemId!;
+  print("updateData $NOTE_API");
+  print("updateData ${noteModel.itemId}");
+  print("updateData $updateApi");
+  update({"updateData": noteModel.toMap()});
 
   try {
     var response = await http.patch(Uri.parse(updateApi),
@@ -118,6 +122,7 @@ Future<bool> updateData(NoteModel noteModel) async {
             "colorValue": {"stringValue": noteModel.colorValue.toString()}
           }
         }));
+    print(response.statusCode);
     if (response.statusCode == 200) {
       return true;
     }

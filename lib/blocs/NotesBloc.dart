@@ -15,29 +15,29 @@ class NotesBloc {
   }
 
 
-  void addNote(BuildContext context) {
+  void addNote(BuildContext context)async {
     note!.title=note!.title??'';
     note!.description=note!.description??'';
     
-    Api.addNote(note!).then((value) {
+   await Api.addNote(note!).then((value) {
     }).catchError((error) {
       Utils.showToast(Utils.getErrorMessage(error));
     });
   }
 
-  void update(BuildContext context) {
+  void update(BuildContext context)async {
     note!.title=note!.title??'';
     note!.description=note!.description??'';
 
-    Api.updateData(note!).then((value) {
+    await Api.updateData(note!).then((value) {
       }).catchError((error) {
         Utils.showToast(Utils.getErrorMessage(error));
       });
 
   }
 
-  void delete(BuildContext context) {
-      Api.deleteNote(note!).then((value) {
+  void delete(BuildContext context) async{
+     await Api.deleteNote(note!).then((value) {
       }).catchError((error) {
         Utils.showToast(Utils.getErrorMessage(error));
       });
