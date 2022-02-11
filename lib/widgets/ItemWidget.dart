@@ -15,6 +15,8 @@ class ItemWidget extends StatefulWidget {
 
 class _ItemWidgetState extends State<ItemWidget> {
   Image? background;
+  late int diff;
+  late Device device;
 
   @override
   void initState() {
@@ -23,32 +25,33 @@ class _ItemWidgetState extends State<ItemWidget> {
 
   @override
   Widget build(BuildContext context) {
+    device = Device(MediaQuery.of(context).size.height, MediaQuery.of(context).size.width);
+    diff = device.deviceWidth.round() - device.deviceHeight.round();
+
     return Container(
-      height: 150,
+      height: 200,
+      padding: EdgeInsets.all(2),
       child: Stack(
         fit: StackFit.expand,
         children: [
           Container(
               child: Image.asset(
-                'assets/images/ic_${widget.noteModel.colorValue}.png',
-                height: 150,
-                width: 150,
-                fit: BoxFit.fitHeight,
-              )),
+            'assets/images/ic_${widget.noteModel.colorValue}.png',
+            height: 150,
+            width: 150,
+            fit: BoxFit.fitHeight,
+          )),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(4.0),
                   child: Text(
                     widget.noteModel.title ?? '',
                     maxLines: 1,
-                    style: TextStyle(
-                        fontSize: 22,
-                        color: Colors.white,
-                        fontFamily: 'OpenSans'),
+                    style: TextStyle(fontSize: 18, color: Colors.white, fontFamily: 'OpenSans'),
                   ),
                 ),
                 Container(
@@ -60,11 +63,8 @@ class _ItemWidgetState extends State<ItemWidget> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       widget.noteModel.description ?? '',
-                      style: TextStyle(
-                          fontSize: 18,
-                          height: 1,
-                          color: Colors.white,
-                          fontFamily: 'OpenSans'),
+                      maxLines: getMaxLines(),
+                      style: TextStyle(fontSize: 14, height: 1, color: Colors.white, fontFamily: 'OpenSans'),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
@@ -75,5 +75,16 @@ class _ItemWidgetState extends State<ItemWidget> {
         ],
       ),
     );
+  }
+
+  /// CrossAxisCount depends on screen size
+  int getMaxLines() {
+    if (diff <= 600) {
+      return 5;
+      return 5;
+    } else if (diff < 1000) {
+      return 6;
+    }
+    return 2;
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:keepapp/blocs/HomeBloc.dart';
 import 'package:keepapp/blocs/LoginBloc.dart';
@@ -7,11 +8,14 @@ import 'package:keepapp/screen/LoginPage.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 
-main() {
+Future<void> main() async {
   if (defaultTargetPlatform != TargetPlatform.android ||
       defaultTargetPlatform != TargetPlatform.iOS) {
     /// For desktop apps only
     debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+  }else{
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   }
 
   runApp(MultiProvider(

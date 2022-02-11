@@ -108,7 +108,7 @@ class _NoteDetailState extends State<NoteDetail> {
                               border: InputBorder.none,
                               hintText: "Title",
                               hintStyle: TextStyle(
-                                fontSize: 25,
+                                fontSize: 20,
                                 color: Colors.white60,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -133,7 +133,7 @@ class _NoteDetailState extends State<NoteDetail> {
                               border: InputBorder.none,
                               hintText: "Enter note",
                               hintStyle: TextStyle(
-                                  fontSize: 16, color: Colors.white60),
+                                  fontSize: 14, color: Colors.white60),
                               contentPadding:
                                   EdgeInsets.only(left: 8.0, right: 8.0),
                             ),
