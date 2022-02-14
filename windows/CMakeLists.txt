@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 project(navoki_notes LANGUAGES CXX)
 
-set(BINARY_NAME "navoki_notes")
+set(BINARY_NAME "NavokiNotes")
 
 cmake_policy(SET CMP0063 NEW)
 
