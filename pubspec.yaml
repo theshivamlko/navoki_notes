@@ -59,8 +59,4 @@ msix_config:
   logo_path: windows\runner\resources\app_icon.ico
   capabilities: "internetClient"
   signtool_options: "/v /t http://timestamp.digicert.com /fd sha256 /f navoki_notes.pfx /p 123456789 build\\windows\\runner\\Release\\NavokiNotes.exe"
-  certificate_path: "E:\\MyProjects\\NavokiNotes\\Keys\\Windows\\navoki_notes.pfx"
-  certificate_password: "123456789"
 
-
-  # signtool_options: "/v /t http://timestamp.digicert.com /fd sha256 /f \"E:\MyProjects\NavokiNotes\Keys\Windows\navoki_notes.pfx\" /p 123456789 \"C:\Users\TheDoctor\NavokiProjects\navoki_notes\build\windows\runner\Release\NavokiNotes.exe\" "
