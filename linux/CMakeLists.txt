@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(runner LANGUAGES CXX)
 
-set(BINARY_NAME "navoki_notes")
-set(APPLICATION_ID "com.navoki.navoki_notes")
+set(BINARY_NAME "NavokiNotes")
+set(APPLICATION_ID "com.navoki.navokinotes")
 
 cmake_policy(SET CMP0063 NEW)
 
