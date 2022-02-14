@@ -1,5 +1,5 @@
 import 'package:cross_local_storage/cross_local_storage.dart';
-import 'package:keepapp/utils/AppConstants.dart' ;
+import 'package:navokinotes/utils/AppConstants.dart' ;
 
 /// Store Local data for app usage
 class LocalDataStorage {

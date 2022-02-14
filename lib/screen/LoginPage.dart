@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:keepapp/blocs/LoginBloc.dart';
-import 'package:keepapp/utils/AppConstants.dart';
-import 'package:keepapp/utils/Device.dart';
-import 'package:keepapp/utils/Utils.dart';
+import 'package:navokinotes/blocs/LoginBloc.dart';
+import 'package:navokinotes/utils/AppConstants.dart';
+import 'package:navokinotes/utils/Device.dart';
+import 'package:navokinotes/utils/Utils.dart';
 import 'package:provider/provider.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 

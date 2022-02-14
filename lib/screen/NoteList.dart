@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:keepapp/blocs/HomeBloc.dart';
-import 'package:keepapp/blocs/NotesBloc.dart';
-import 'package:keepapp/callbacks/ClickCallback.dart';
-import 'package:keepapp/model/NoteModel.dart';
-import 'package:keepapp/utils/Device.dart';
-import 'package:keepapp/widgets/ItemWidget.dart';
+import 'package:navokinotes/blocs/HomeBloc.dart';
+import 'package:navokinotes/blocs/NotesBloc.dart';
+import 'package:navokinotes/callbacks/ClickCallback.dart';
+import 'package:navokinotes/model/NoteModel.dart';
+import 'package:navokinotes/utils/Device.dart';
+import 'package:navokinotes/widgets/ItemWidget.dart';
 import 'package:provider/provider.dart';
 
 /// Note List UI

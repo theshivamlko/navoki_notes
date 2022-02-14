@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
  import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:keepapp/blocs/HomeBloc.dart';
-import 'package:keepapp/callbacks/ClickCallback.dart';
-import 'package:keepapp/enums/NoteActions.dart';
- import 'package:keepapp/utils/Device.dart';
+import 'package:navokinotes/blocs/HomeBloc.dart';
+import 'package:navokinotes/callbacks/ClickCallback.dart';
+import 'package:navokinotes/enums/NoteActions.dart';
+ import 'package:navokinotes/utils/Device.dart';
 import 'package:provider/provider.dart';
 
 /// Note Card details UI

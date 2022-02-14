@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:keepapp/model/NoteModel.dart';
-import 'package:keepapp/utils/Api.dart' as Api;
-import 'package:keepapp/utils/Utils.dart';
+import 'package:navokinotes/model/NoteModel.dart';
+import 'package:navokinotes/utils/Api.dart' as Api;
+import 'package:navokinotes/utils/Utils.dart';
 
 class NotesBloc {
   NoteModel? note;

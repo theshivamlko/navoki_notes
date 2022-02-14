@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:keepapp/model/NoteModel.dart';
-import 'package:keepapp/utils/Device.dart';
+import 'package:navokinotes/model/NoteModel.dart';
+import 'package:navokinotes/utils/Device.dart';
 
 /// Note Card UI in List
 class ItemWidget extends StatefulWidget {
