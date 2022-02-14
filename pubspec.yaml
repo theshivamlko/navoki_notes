@@ -27,6 +27,7 @@ dependencies:
   shared_preferences: ^2.0.8
 
 dev_dependencies:
+  msix: ^3.0.1
   flutter_test:
     sdk: flutter
 
@@ -48,3 +49,14 @@ flutter:
     - family: Blaster
       fonts:
         - asset: assets/fonts/Blaster.ttf
+
+
+msix_config:
+  display_name: Navoki Notes
+  publisher_display_name: Navoki
+  identity_name: Navoki.MySuite.NavokiNotes
+  msix_version: 1.0.0.0
+  logo_path: windows\runner\resources\app_icon.ico
+  capabilities: "internetClient"
+  certificate_path: "navoki_notes.pfx"
+  certificate_password: "123456789"
