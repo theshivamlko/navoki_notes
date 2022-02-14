@@ -1,4 +1,4 @@
-name: navoki-notes
+name: navokinotes
 version: 1.0.2
 summary: Take notes and sync on all your devices Mobile, Web, Desktop
 description: A pure Cross platform Open Source app made with Flutter and Firebase. Subscribe our channel for more Flutter and Dart videos and visit https://navoki.com , Code https://github.com/theshivamlko/navoki_notes
@@ -9,15 +9,15 @@ icon: snap/gui/icon.png
 
 
 apps:
-   navoki-notes:
-     command: navoki-notes
-     extensions: [flutter-master]
+   navokinotes:
+     command: navokinotes
+     extensions: [flutter-stable]
      plugs:
        - network
        - desktop
 
 parts:
-  navoki-notes:
+  navokinotes:
     source: .
     plugin: flutter
     flutter-target: lib/main.dart # The main entry-point file of the application

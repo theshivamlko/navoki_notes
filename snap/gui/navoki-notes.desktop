@@ -2,7 +2,7 @@
 Version=1.0.2
 Name=Navoki Notes
 Comment=Take notes and sync on all your devices
-Exec=navoki-notes
+Exec=navokinotes
 Icon=${SNAP}/meta/gui/icon.png
 Terminal=false
 Type=Application
