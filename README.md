@@ -5,9 +5,10 @@
 Navoki Notes, a note app app, will sync data to cloud and on all devices. We have application for **Android, iOS, Web App, PWA, Windows, macOS, Linux** , so you can access data anywhere on any device. Its FREE to use.
 The is a **single code-base cross-platform app made on Flutter Framework with Firebase**.
 
-[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://opensource.org/licenses/Apache-2.0)  [![navoki-notes](https://snapcraft.io//navoki-notes/badge.svg)](https://snapcraft.io/navoki-notes)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://opensource.org/licenses/Apache-2.0) 
+<!-- [![navoki-notes](https://snapcraft.io//navoki-notes/badge.svg)](https://snapcraft.io/navoki-notes) -->
 
-[![Image](misc/googleplay.png)](https://play.google.com/store/apps/details?id=com.navoki.keepapp)  [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/navoki-notes)
+<!-- [![Image](misc/googleplay.png)](https://play.google.com/store/apps/details?id=com.navoki.keepapp)  [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/navoki-notes) -->
 
 ![Image](misc/youtube.png) [Youtube](https://www.youtube.com/channel/UCP2-MYtIbBnlEcfTvJKo5Og?sub_confirmation=1)
 
@@ -21,12 +22,12 @@ The is a **single code-base cross-platform app made on Flutter Framework with Fi
 ## Video
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/g-hPh6FPfgo/0.jpg)](https://www.youtube.com/watch?v=g-hPh6FPfgo)
 
-## Downloads
+<!-- ## Downloads
 Ready to use app [Android App](https://play.google.com/store/apps/details?id=com.navoki.keepapp)
 
 [Web App](https://navoki.com/samples/navoki-notes/#/)
 
-[iOS, Windows, MacOS,Linux](https://github.com/theshivamlko/navoki_notes/releases)
+[iOS, Windows, MacOS,Linux](https://github.com/theshivamlko/navoki_notes/releases) -->
 
 ## Getting Started
 
@@ -56,9 +57,8 @@ samples, guidance on mobile development, and a full API reference.
 - To get devices list, run `flutter devices`
 
 ### NOTE:
-- Also, install build tools for each platforms  to run on that platform. Follow links above.
-- **Flutter Desktop is not stable yet** so you might face some issue, till now I have faced few app crashes on desktop but feature is implemented and app is running.
-For Linux app you need to build project and run using ```flutter run -d linux```
+- You need SDK setup only, then can create your own build for each platform.
+- **Publishing Apps** still need to be tested for stability after release on Desktop apps 
 
 ## Learning
 Few things I have used that you can work to understand flutter development.
@@ -74,44 +74,55 @@ You can build your own project on this just by changing dart code in `lib` folde
 ### My Flutter and Tools version:
 ```flutter doctor -v```
 ```
-[✓] Flutter (Channel master, 1.19.0-2.0.pre.140, on Mac OS X 10.15.5 19F83c,
-    locale en-IN)
-    • Flutter version 1.19.0-2.0.pre.140 at /Users/shivam/Documents/flutter
-    • Framework revision 852a30b003 (41 minutes ago), 2020-05-22 03:27:03 +0530
-    • Engine revision 9ce1e5c5c7
-    • Dart version 2.9.0 (build 2.9.0-10.0.dev 7706afbcf5)
+[√] Flutter (Channel stable, 2.10.1, on Microsoft Windows [Version 10.0.22000.526], locale en-IN)
+    • Flutter version 2.10.1 at C:\Users\TheDoctor\flutter
+    • Upstream repository https://github.com/flutter/flutter.git
+    • Framework revision db747aa133 (5 days ago), 2022-02-09 13:57:35 -0600
+    • Engine revision ab46186b24
+    • Dart version 2.16.1
+    • DevTools version 2.9.2
 
-[!] Android toolchain - develop for Android devices (Android SDK version 29.0.3)
-    • Android SDK at /Users/shivam/Library/Android/sdk
-    • Platform android-29, build-tools 29.0.3
-    • Java binary at: /Applications/Android
-      Studio.app/Contents/jre/jdk/Contents/Home/bin/java
-    • Java version OpenJDK Runtime Environment (build
-      1.8.0_212-release-1586-b4-5784211)
+[!] Android toolchain - develop for Android devices (Android SDK version 32.1.0-rc1)
+    • Android SDK at C:\Users\TheDoctor\AppData\Local\Android\Sdk
+    • Platform android-32, build-tools 32.1.0-rc1
+    • ANDROID_HOME = C:\Users\TheDoctor\AppData\Local\Android\Sdk
+    • Java binary at: C:\Program Files\Android\Android Studio\jre\bin\java
+    • Java version OpenJDK Runtime Environment (build 11.0.11+9-b60-7590822)
+    ! Some Android licenses not accepted.  To resolve this, run: flutter doctor --android-licenses
 
-[✓] Xcode - develop for iOS and macOS (Xcode 11.3.1)
-    • Xcode at /Applications/Xcode.app/Contents/Developer
-    • Xcode 11.3.1, Build version 11C505
-    • CocoaPods version 1.9.1
+[√] Chrome - develop for the web
+    • Chrome at C:\Program Files\Google\Chrome\Application\chrome.exe
 
-[√] Visual Studio - develop for Windows (Visual Studio Community 2019 16.5.1)
-    • Visual Studio at C:\Program Files (x86)\Microsoft Visual Studio\2019\Community
-    • Visual Studio Community 2019 version 16.5.29920.165
+[√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.0.6)
+    • Visual Studio at C:\Program Files\Microsoft Visual Studio\2022\Community
+    • Visual Studio Community 2022 version 17.0.32126.317
+    • Windows 10 SDK version 10.0.22000.0
 
-[✓] Linux toolchain - develop for Linux desktop
-    • clang version 6.0.0-1ubuntu2 (tags/RELEASE_600/final)
-    • cmake version 3.10.2
-    • ninja version 1.8.2
+[√] Android Studio (version 2021.1)
+    • Android Studio at C:\Program Files\Android\Android Studio
+    • Flutter plugin can be installed from:
+       https://plugins.jetbrains.com/plugin/9212-flutter
+    • Dart plugin can be installed from:
+       https://plugins.jetbrains.com/plugin/6351-dart
+    • Java version OpenJDK Runtime Environment (build 11.0.11+9-b60-7590822)
 
-[✓] Android Studio (version 3.6)
-    • Android Studio at /Applications/Android Studio.app/Contents
-    • Flutter plugin version 45.1.1
-    • Dart plugin version 192.8052
-    • Java version OpenJDK Runtime Environment (build
-      1.8.0_212-release-1586-b4-5784211)
+[√] IntelliJ IDEA Ultimate Edition (version 2020.1)
+    • IntelliJ at G:\Program Files\IntelliJ IDEA 2020.1
+    • Flutter plugin version 46.0.3
+    • Dart plugin version 201.7223.43
 
-[✓] VS Code (version 1.44.2)
-    • Flutter extension version 3.9.1
+[√] VS Code (version 1.63.2)
+    • VS Code at C:\Users\TheDoctor\AppData\Local\Programs\Microsoft VS Code
+    • Flutter extension version 3.34.0
+
+[√] Connected device (4 available)
+    • ONEPLUS A6010 (mobile) • 64519b22 • android-arm64  • Android 11 (API 30)
+    • Windows (desktop)      • windows  • windows-x64    • Microsoft Windows [Version 10.0.22000.526]
+    • Chrome (web)           • chrome   • web-javascript • Google Chrome 98.0.4758.82
+    • Edge (web)             • edge     • web-javascript • Microsoft Edge 98.0.1108.43
+
+[√] HTTP Host Availability
+    • All required HTTP hosts are available
 
 ```
 
@@ -128,7 +139,7 @@ Comment on youtube channel for more tutorials
 Mobile Solution Architect, #Android and #Flutter Developer, #Dart, Maybe #Go, #Founder of Navoki.com, #Google Scholar #Udacity Android #Nanodegree, 
  Entrepreneur
  
- [![Image](misc/youtube2.png)](https://www.youtube.com/channel/UCP2-MYtIbBnlEcfTvJKo5Og?sub_confirmation=1)  &nbsp; [![Image](misc/twitter.png)](https://twitter.com/theshivamlko) &nbsp; [![Image](misc/linkedin.png)](https://www.linkedin.com/in/theshivamlko/) &nbsp; [![Image](misc/navoki.png)](https://navoki.com/) &nbsp; [![Image](misc/facebook.png)](https://www.facebook.com/shivamlove11) &nbsp; [![Image](misc/instagram.png)](http://instagram.com/theshivamlko)  
+ [![Image](misc/youtube2.png)](https://www.youtube.com/channel/UCP2-MYtIbBnlEcfTvJKo5Og?sub_confirmation=1)  &nbsp; [![Image](misc/twitter.png)](https://twitter.com/theshivamlko) &nbsp; [![Image](misc/linkedin.png)](https://www.linkedin.com/in/theshivamlko/) &nbsp; [![Image](misc/navoki.png)](https://navoki.com/) &nbsp; [![Image](misc/instagram.png)](https://www.instagram.com/navokitech)  
  
 
 ## License and Trademarks
@@ -147,6 +158,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
-### Navoki and Navoki logo are registered trademark of [navoki.com](https://navoki.com/). You are free to use the source code above.
-
