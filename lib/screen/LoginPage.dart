@@ -18,8 +18,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   /// Switch login/signUp section
   late TabController tabController;
 
-  TextEditingController emailController = TextEditingController(text: 'shivamsrivastava.9@gmail.com');
-  TextEditingController passwordController = TextEditingController(text: 'qwerty');
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   late LoginBloc loginBloc;
   late Future<String?>? tokenFuture;
