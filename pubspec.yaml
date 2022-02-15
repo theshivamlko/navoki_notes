@@ -54,6 +54,7 @@ flutter:
 msix_config:
   display_name: Navoki Notes
   publisher_display_name: Navoki
+  publisher: Shivam Srivastava
   identity_name: Navoki.MySuite.NavokiNotes
   msix_version: 1.0.0.0
   logo_path: windows\runner\resources\app_icon.ico
@@ -61,5 +62,5 @@ msix_config:
   signtool_options: "/v /t http://timestamp.digicert.com /fd sha256 /f navoki_notes.pfx /p 123456789 build\\windows\\runner\\Release\\NavokiNotes.exe"
   certificate_path: "navoki_notes.pfx"
   certificate_password: "123456789"
-  install-certificate: 'false'
+  install_certificate: 'false'
 
