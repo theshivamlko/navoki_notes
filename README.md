@@ -50,8 +50,13 @@ samples, guidance on mobile development, and a full API reference.
 - Create a [Firebase Project](https://firebase.google.com/) 
 - Enable [Firebase Security rules](https://firebase.google.com/docs/firestore/security/get-started) on Firebase Console. [Read more](https://medium.com/@khreniak/cloud-firestore-security-rules-basics-fac6b6bea18e).
 - Check if platform is shows for project by running ```flutter devices```
-- Replace `API_KEY` value with your project key, `<Project>` _**-> Project Settings -> General ->**_ `Web API key
-` 
+- Replace `API_KEY` value with your project key, `<Project>` _**-> Project Settings -> General ->**_ `Web API key`
+- Add you key in `AppConstants.dart`
+```
+  // TODO: Replace your key here
+  static const String API_KEY = "";
+```
+
 ## Build Project
 - To run and build project run command `flutter build <device-name>`
 - To get devices list, run `flutter devices`
