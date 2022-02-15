@@ -31,7 +31,12 @@ Ready to use app [Android App](https://play.google.com/store/apps/details?id=com
 
 ## Getting Started
 
-This project is made with [Flutter Framework](https://www.flutter.dev), [Firebase Authentication](https://firebase.google.com/docs/auth/), [Cloud Firestore](https://firebase.google.com/docs/firestore) and [Adobe XD Flutter plugin](https://xd.adobelanding.com/xd-to-flutter/).
+This project is made with 
+- [Flutter Framework](https://www.flutter.dev)
+- [Firebase REST API](https://firebase.google.com/docs/projects/api/reference/rest)
+- [Firebase Authentication](https://firebase.google.com/docs/auth/)
+- [Cloud Firestore](https://firebase.google.com/docs/firestore)
+- [Adobe XD Flutter plugin](https://xd.adobelanding.com/xd-to-flutter/).
 
 A few resources to get you started if this is your first Flutter project:
 
