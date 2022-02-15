@@ -64,6 +64,7 @@ samples, guidance on mobile development, and a full API reference.
 ### NOTE:
 - You need SDK setup only, then can create your own build for each platform.
 - **Publishing Apps** still need to be tested for stability after release on Desktop apps 
+- There will be security risk with API key, I am working on it.
 
 ## Learning
 Few things I have used that you can work to understand flutter development.
