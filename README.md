@@ -2,7 +2,7 @@
 
 # NavokiNotes
 
-Navoki Notes, a note app app, will sync data to cloud and on all devices. We have application for **Android, iOS, Web App, PWA, Windows, macOS, Linux** , so you can access data anywhere on any device. Its FREE to use.
+Navoki Notes, a POC (proof of concept) note app app, will sync data to cloud and on all devices. Build for **Android, iOS, Web App, PWA, Windows, macOS, Linux** , so you can access data anywhere on any device. Its FREE to use.
 The is a **single code-base cross-platform app made on Flutter Framework with Firebase**.
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://opensource.org/licenses/Apache-2.0) 
