@@ -6,6 +6,7 @@ Navoki Notes, a POC (proof of concept) note app app, will sync data to cloud and
 The is a **single code-base cross-platform app made on Flutter Framework with Firebase**.
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://opensource.org/licenses/Apache-2.0) 
+[![Codemagic build status](https://api.codemagic.io/apps/62090b75546bd24402e57cd4/62090b75546bd24402e57cd3/status_badge.svg)](https://codemagic.io/apps/62090b75546bd24402e57cd4/62090b75546bd24402e57cd3/latest_build)
 <!-- [![navoki-notes](https://snapcraft.io//navoki-notes/badge.svg)](https://snapcraft.io/navoki-notes) -->
 
 <!-- [![Image](misc/googleplay.png)](https://play.google.com/store/apps/details?id=com.navoki.keepapp)  [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/navoki-notes) -->
@@ -46,6 +47,8 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Codemagic Build and Release supported
 
 ## Installation and Config
 - Install [Flutter SDK](https://flutter.dev/docs/get-started/install) from official site.
