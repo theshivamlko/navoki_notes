@@ -1,29 +1,29 @@
 import 'package:flutter/cupertino.dart';
-import 'package:navokinotes/blocs/NotesBloc.dart';
-import 'package:navokinotes/model/NoteModel.dart';
-import 'package:navokinotes/utils/Api.dart' as Api;
-import 'package:navokinotes/utils/LocalDataStorage.dart';
-import 'package:navokinotes/utils/Utils.dart';
+import 'package:navokinotes/blocs/notes_bloc.dart';
+import 'package:navokinotes/model/note_model.dart';
+import 'package:navokinotes/utils/api.dart' as api;
+import 'package:navokinotes/utils/local_data_storage.dart';
+import 'package:navokinotes/utils/utils.dart';
 
 /// Bloc for [HomePage]
 class HomeBloc extends ChangeNotifier {
-  List<NoteModel> notesList=List.empty(growable: true);
+  List<NoteModel> notesList = List.empty(growable: true);
 
-  NotesBloc notesBloc=NotesBloc.empty();
- // String token;
+  NotesBloc notesBloc = NotesBloc.empty();
+  // String token;
   String? errorMsg;
 
   LocalDataStorage localDataStorage = LocalDataStorage();
 
   /// return notes list to UI
   void getNotes() {
-    Utils.showToast("Refreshing...");
-    Api.getNotes().then((list) {
-      if (list != null && list.isNotEmpty) {
+    Utils.showToast('Refreshing...');
+    api.getNotes().then((list) {
+      if (list.isNotEmpty) {
         notesList = list;
         errorMsg = null;
       } else {
-        errorMsg = "No data found!";
+        errorMsg = 'No data found!';
       }
       notifyListeners();
     }).catchError((error) {

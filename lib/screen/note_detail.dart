@@ -1,37 +1,36 @@
-import 'package:flutter/cupertino.dart';
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:navokinotes/blocs/HomeBloc.dart';
-import 'package:navokinotes/callbacks/ClickCallback.dart';
-import 'package:navokinotes/enums/NoteActions.dart';
- import 'package:navokinotes/utils/Device.dart';
+import 'package:navokinotes/blocs/home_bloc.dart';
+import 'package:navokinotes/callbacks/click_callback.dart';
+import 'package:navokinotes/enums/note_actions.dart';
+import 'package:navokinotes/utils/device.dart';
 import 'package:provider/provider.dart';
 
 /// Note Card details UI
 class NoteDetail extends StatefulWidget {
-  int? index;
-  ClickCallback onCancel;
+  final int? index;
+  final ClickCallback onCancel;
 
-  NoteDetail({  this.index, required this.onCancel});
+  const NoteDetail({this.index, required this.onCancel, super.key});
 
   @override
-  _NoteDetailState createState() => _NoteDetailState();
+  State<NoteDetail> createState() => _NoteDetailState();
 }
 
 class _NoteDetailState extends State<NoteDetail> {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController titleController = TextEditingController();
-  late  HomeBloc homeBloc;
+  late HomeBloc homeBloc;
   late Device device;
 
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance!.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       if (homeBloc.notesBloc.note != null) {
-        descriptionController.text = homeBloc.notesBloc.note!.description??"";
-        titleController.text = homeBloc.notesBloc.note!.title??"";
+        descriptionController.text = homeBloc.notesBloc.note!.description ?? '';
+        titleController.text = homeBloc.notesBloc.note!.title ?? '';
       }
       setState(() {});
     });
@@ -51,8 +50,8 @@ class _NoteDetailState extends State<NoteDetail> {
       },
       child: Container(
         height: device.deviceHeight,
-        width: device.deviceWidth ,
-      color: Color(homeBloc.notesBloc.note!.colorValue!),
+        width: device.deviceWidth,
+        color: Color(homeBloc.notesBloc.note!.colorValue!),
         child: Stack(
           children: [
             Column(
@@ -68,7 +67,7 @@ class _NoteDetailState extends State<NoteDetail> {
                               homeBloc.notesBloc.delete(context);
                               widget.onCancel(null, NoteActions.DELETE, false);
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.delete,
                               color: Colors.white,
                               size: 30,
@@ -77,7 +76,7 @@ class _NoteDetailState extends State<NoteDetail> {
                         : Container(),
                     IconButton(
                       onPressed: () => colorPicker(),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.color_lens,
                         color: Colors.white,
                         size: 30,
@@ -88,7 +87,7 @@ class _NoteDetailState extends State<NoteDetail> {
                             onPressed: () {
                               manageNote();
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.clear,
                               size: 30,
                               color: Colors.white,
@@ -98,22 +97,22 @@ class _NoteDetailState extends State<NoteDetail> {
                   ],
                 ),
                 SingleChildScrollView(
-                  child: Container(
+                  child: SizedBox(
                     width: device.deviceWidth,
                     child: Column(
                       children: [
                         TextFormField(
                           cursorColor: Colors.white30,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               border: InputBorder.none,
-                              hintText: "Title",
+                              hintText: 'Title',
                               hintStyle: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white60,
                                 fontWeight: FontWeight.bold,
                               ),
                               contentPadding: EdgeInsets.all(8.0)),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
@@ -124,23 +123,22 @@ class _NoteDetailState extends State<NoteDetail> {
                           color: Colors.white30,
                           height: 1,
                         ),
-                        Container(
-                          child: TextFormField(
-                            style: TextStyle(fontSize: 20, color: Colors.white),
-                            showCursor: true,
-                            cursorColor: Colors.white30,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Enter note",
-                              hintStyle: TextStyle(
-                                  fontSize: 14, color: Colors.white60),
-                              contentPadding:
-                                  EdgeInsets.only(left: 8.0, right: 8.0),
-                            ),
-                            maxLines: null,
-                            keyboardType: TextInputType.multiline,
-                            controller: descriptionController,
+                        TextFormField(
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.white),
+                          showCursor: true,
+                          cursorColor: Colors.white30,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Enter note',
+                            hintStyle:
+                                TextStyle(fontSize: 14, color: Colors.white60),
+                            contentPadding:
+                                EdgeInsets.only(left: 8.0, right: 8.0),
                           ),
+                          maxLines: null,
+                          keyboardType: TextInputType.multiline,
+                          controller: descriptionController,
                         ),
                       ],
                     ),
@@ -152,7 +150,6 @@ class _NoteDetailState extends State<NoteDetail> {
         ),
       ),
     );
-
   }
 
   /// Change selected color from color picker box
@@ -166,7 +163,7 @@ class _NoteDetailState extends State<NoteDetail> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Select a color'),
+          title: const Text('Select a color'),
           content: SingleChildScrollView(
             child: BlockPicker(
               pickerColor: Color(homeBloc.notesBloc.note!.colorValue!),

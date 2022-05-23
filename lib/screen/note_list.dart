@@ -2,22 +2,21 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:navokinotes/blocs/HomeBloc.dart';
-import 'package:navokinotes/blocs/NotesBloc.dart';
-import 'package:navokinotes/callbacks/ClickCallback.dart';
-import 'package:navokinotes/model/NoteModel.dart';
-import 'package:navokinotes/utils/Device.dart';
-import 'package:navokinotes/widgets/ItemWidget.dart';
+import 'package:navokinotes/blocs/home_bloc.dart';
+import 'package:navokinotes/callbacks/click_callback.dart';
+import 'package:navokinotes/model/note_model.dart';
+import 'package:navokinotes/utils/device.dart';
+import 'package:navokinotes/widgets/item_widget.dart';
 import 'package:provider/provider.dart';
 
 /// Note List UI
 class NoteList extends StatefulWidget {
-  ClickCallback? onSelect;
+  final ClickCallback? onSelect;
 
-  NoteList({this.onSelect});
+  const NoteList({this.onSelect, super.key});
 
   @override
-  _NoteListState createState() => _NoteListState();
+  State<NoteList> createState() => _NoteListState();
 }
 
 class _NoteListState extends State<NoteList> {
@@ -26,7 +25,7 @@ class _NoteListState extends State<NoteList> {
   late HomeBloc homeBloc;
   late int diff;
   late Device device;
-  late  Timer timer;
+  late Timer timer;
 
   @override
   void initState() {
@@ -46,49 +45,44 @@ class _NoteListState extends State<NoteList> {
 
   /// Note List in Staggered View
   Widget getStaggeredView() {
-    return Container(
-      child: LayoutBuilder(builder: (context, snapshot) {
-        return MasonryGridView.count(
-         crossAxisCount: getCrossAxisCount(),
+    return LayoutBuilder(builder: (context, snapshot) {
+      return MasonryGridView.count(
+        crossAxisCount: getCrossAxisCount(),
         //  crossAxisCount: 3,
-         //  mainAxisSpacing: 2,
-     //     crossAxisSpacing: 2,
-     /*     staggeredTileBuilder: (int index) {
-            int vertical = 2;
-            if (homeBloc.notesList[index].description != null &&
-                '\n'.allMatches(homeBloc.notesList[index].description).length >
-                    5) {
-              vertical = 3;
-            }
-            return StaggeredTile.count(2, vertical);
-          },*/
-          itemCount: homeBloc.notesList.length,
-          itemBuilder: (BuildContext context, int index) {
-
-
-            return InkWell(
-              onTap: () {
-
-                selectCard(homeBloc.notesList[index], index);
-              },
-              child: ItemWidget(homeBloc.notesList[index], device),
-            );
-          },
-        );
-      }),
-    );
+        //  mainAxisSpacing: 2,
+        //     crossAxisSpacing: 2,
+        /*     staggeredTileBuilder: (int index) {
+          int vertical = 2;
+          if (homeBloc.notesList[index].description != null &&
+              '\n'.allMatches(homeBloc.notesList[index].description).length >
+                  5) {
+            vertical = 3;
+          }
+          return StaggeredTile.count(2, vertical);
+        },*/
+        itemCount: homeBloc.notesList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return InkWell(
+            onTap: () {
+              selectCard(homeBloc.notesList[index], index);
+            },
+            child: ItemWidget(homeBloc.notesList[index], device),
+          );
+        },
+      );
+    });
   }
 
   /// Note List in List View
   Widget getListView() {
-    return Container(
+    return SizedBox(
       height: device.deviceHeight,
       child: ListView.builder(
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => selectCard(homeBloc.notesList[index], index),
-            child: ItemWidget(homeBloc.notesList[index], device),
             key: ObjectKey(homeBloc.notesList[index]),
+            child: ItemWidget(homeBloc.notesList[index], device),
           );
         },
         itemCount: homeBloc.notesList.length,
@@ -98,7 +92,7 @@ class _NoteListState extends State<NoteList> {
 
   /// Opens a new note or existing note if [noteModel] isNotEmpty
   void selectCard(NoteModel noteModel, int index) {
-    if (homeBloc.notesBloc == null) homeBloc.notesBloc = NotesBloc.empty();
+    homeBloc.notesBloc;
     noteModel.itemIndex = index;
     homeBloc.notesBloc.note = noteModel;
     widget.onSelect!(null, null, true);
@@ -110,7 +104,7 @@ class _NoteListState extends State<NoteList> {
       return 2;
     } else if (diff > -100 && diff <= 600) {
       return 4;
-    }  else if (diff < 1000) {
+    } else if (diff < 1000) {
       return 6;
     }
     return 2;

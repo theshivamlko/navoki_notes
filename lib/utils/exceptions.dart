@@ -1,4 +1,3 @@
-
 /// Handle Exception when no data found
 class NoDataFound implements Exception {
   NoDataFound();

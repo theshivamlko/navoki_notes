@@ -1,17 +1,11 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesService {
-
-
-
-
   SharedPreferencesService._();
-
 
   static SharedPreferencesService get instance => SharedPreferencesService._();
 
   static SharedPreferences? _prefs;
-
 
   ///initializing
   initialize() async {
@@ -32,15 +26,15 @@ class SharedPreferencesService {
   }
 
   String? getStringData(String key) {
-    return _prefs?.getString(key)??"";
+    return _prefs?.getString(key) ?? '';
   }
 
   int? getIntData(String key) {
-    return _prefs?.getInt(key)??-1;
+    return _prefs?.getInt(key) ?? -1;
   }
 
   bool? getBoolData(String key) {
-    return _prefs?.getBool(key)??false;
+    return _prefs?.getBool(key) ?? false;
   }
 
   clearSharedPreferences() async {

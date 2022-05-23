@@ -1,31 +1,30 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:navokinotes/blocs/HomeBloc.dart';
-import 'package:navokinotes/blocs/LoginBloc.dart';
-import 'package:navokinotes/blocs/NotesBloc.dart';
-import 'package:navokinotes/callbacks/ClickCallback.dart';
-import 'package:navokinotes/enums/NoteActions.dart';
-import 'package:navokinotes/screen/LoginPage.dart';
-import 'package:navokinotes/screen/NoteDetail.dart';
-import 'package:navokinotes/screen/NoteList.dart';
-import 'package:navokinotes/utils/AppConstants.dart';
-import 'package:navokinotes/utils/Device.dart';
-import 'package:navokinotes/utils/Utils.dart';
+import 'package:navokinotes/blocs/home_bloc.dart';
+import 'package:navokinotes/blocs/login_bloc.dart';
+import 'package:navokinotes/blocs/notes_bloc.dart';
+import 'package:navokinotes/callbacks/click_callback.dart';
+import 'package:navokinotes/enums/note_actions.dart';
+import 'package:navokinotes/screen/login_page.dart';
+import 'package:navokinotes/screen/note_detail.dart';
+import 'package:navokinotes/screen/note_list.dart';
+import 'package:navokinotes/utils/app_constants.dart';
+import 'package:navokinotes/utils/device.dart';
+import 'package:navokinotes/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 import '../services/shared_preferences_services.dart';
 
 /// Home page UI
 class HomePage extends StatefulWidget {
-  String token;
+  final String token;
 
-  HomePage(this.token);
+  const HomePage(this.token, {super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
@@ -42,7 +41,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    SchedulerBinding.instance!.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       homeBloc.getNotes();
     });
 
@@ -73,16 +72,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     Utils.deviceWidth = MediaQuery.of(context).size.width;
     isMobile = Utils.deviceWidth! > Utils.deviceHeight! ? false : true;
 
-    device = Device(MediaQuery.of(context).size.height, MediaQuery.of(context).size.width);
+    device = Device(
+        MediaQuery.of(context).size.height, MediaQuery.of(context).size.width);
 
     homeBloc = Provider.of<HomeBloc>(context);
 
     return RefreshIndicator(
       onRefresh: () async {
         homeBloc.getNotes();
-        await Future.delayed(Duration(seconds: 2), () {});
+        await Future.delayed(const Duration(seconds: 2), () {});
 
-        return null;
+        return;
       },
       child: buildScaffold(context),
     );
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Container(
+        title: SizedBox(
           height: 30,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               isNight
                   ? Flexible(
                       child: Text(
-                        "Navoki",
+                        'Navoki',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 30,
@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       width: 100,
                     ),
               Text(
-                " Notes",
+                ' Notes',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 26,
@@ -161,8 +161,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                AppConstants.socialLinks[index]['name'].toString().toUpperCase(),
-                                style: TextStyle(color: Colors.black),
+                                AppConstants.socialLinks[index]['name']
+                                    .toString()
+                                    .toUpperCase(),
+                                style: const TextStyle(color: Colors.black),
                               ),
                             ),
                           ],
@@ -196,10 +198,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               SharedPreferencesService.instance.clearSharedPreferences();
               //  homeBloc.localDataStorage.clear();
               homeBloc.notesList.clear();
-              print("Logout Token ${Utils.loginToken}");
+              print('Logout Token ${Utils.loginToken}');
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => ChangeNotifierProvider<LoginBloc>(create: (context) => LoginBloc(), child: LoginPage())),
+                MaterialPageRoute(
+                    builder: (context) => ChangeNotifierProvider<LoginBloc>(
+                        create: (context) => LoginBloc(),
+                        child: const LoginPage())),
               );
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
@@ -217,7 +222,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       body: Stack(
         children: [
           Align(
-              alignment: Alignment(-1.1, 1.1),
+              alignment: const Alignment(-1.1, 1.1),
               child: Opacity(
                 opacity: 0.5,
                 child: Image.asset(
@@ -227,34 +232,35 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
               )),
           Align(
-            alignment: Alignment(-1.1, 1.1),
-            child: Image.asset('assets/images/pattern1.png', height: 200, width: 150),
+            alignment: const Alignment(-1.1, 1.1),
+            child: Image.asset('assets/images/pattern1.png',
+                height: 200, width: 150),
           ),
-          Align(alignment: Alignment(1.1, 1.0), child: Image.asset('assets/images/pattern2.png')),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Consumer<HomeBloc>(builder: (context, bloc, child) {
-                if (homeBloc.errorMsg != null) return getErrorView(homeBloc.errorMsg!);
+          Align(
+              alignment: const Alignment(1.1, 1.0),
+              child: Image.asset('assets/images/pattern2.png')),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Consumer<HomeBloc>(builder: (context, bloc, child) {
+              if (homeBloc.errorMsg != null) {
+                return getErrorView(homeBloc.errorMsg!);
+              }
 
-                if (homeBloc.notesList == null) return Utils.loadingView(40);
+              return NoteList(onSelect: (note, param, refresh) {
+                /// Callback to Open Single Note to Edit
+                showAddNoteDialog(
+                  onCancel: (data, param, refresh) {
+                    timer = Timer(const Duration(seconds: 2), () {
+                      /// Refresh List
+                      homeBloc.getNotes();
+                    });
 
-                return NoteList(onSelect: (note, param, refresh) {
-                  /// Callback to Open Single Note to Edit
-                  showAddNoteDialog(
-                    onCancel: (data, param, refresh) {
-                      timer = Timer(Duration(seconds: 2), () {
-                        /// Refresh List
-                        homeBloc.getNotes();
-                      });
-
-                      ///Close Dialog and Update Note Content on background
-                      onNoteCloses(param, refresh);
-                    },
-                  );
-                });
-              }),
-            ),
+                    ///Close Dialog and Update Note Content on background
+                    onNoteCloses(param, refresh);
+                  },
+                );
+              });
+            }),
           ),
         ],
       ),
@@ -268,7 +274,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
           /// Add new Note Dialog
           showAddNoteDialog(onCancel: (data, param, refresh) {
-            timer = Timer(Duration(seconds: 2), () {
+            timer = Timer(const Duration(seconds: 2), () {
               homeBloc.getNotes();
             });
 
@@ -276,7 +282,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             onNoteCloses(param, refresh);
           });
         },
-        child: Icon(
+        child: const Icon(
           Icons.add,
           size: 40,
           color: Colors.white,
@@ -287,7 +293,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   /// Error message UI
   Widget getErrorView(String message) {
-    return Container(
+    return SizedBox(
       height: Utils.deviceHeight,
       width: Utils.deviceWidth,
       child: Center(
@@ -316,14 +322,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return Theme(
-            data: ThemeData(iconTheme: IconThemeData(color: Colors.white)),
+            data:
+                ThemeData(iconTheme: const IconThemeData(color: Colors.white)),
             child: Dialog(
               backgroundColor: Colors.transparent,
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Container(
+              child: SizedBox(
                 width: device!.deviceWidth / 2,
                 height: device!.deviceHeight * 0.60,
                 child: NoteDetail(
@@ -331,7 +338,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     param2 = param;
                     refresh2 = refresh;
                     data2 = data;
-                    if ((param == null || param == NoteActions.DELETE) && mounted) Navigator.of(context).pop();
+                    if ((param == null || param == NoteActions.DELETE) &&
+                        mounted) Navigator.of(context).pop();
                     /*   if (param != null && mounted)
 
                   else if (!refresh2 && mounted) Navigator.pop(this.context);*/

@@ -1,17 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:navokinotes/blocs/LoginBloc.dart';
-import 'package:navokinotes/utils/AppConstants.dart';
-import 'package:navokinotes/utils/Device.dart';
-import 'package:navokinotes/utils/Utils.dart';
+import 'package:navokinotes/blocs/login_bloc.dart';
+import 'package:navokinotes/utils/app_constants.dart';
+import 'package:navokinotes/utils/device.dart';
+import 'package:navokinotes/utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 
 /// LoginPage UI
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
@@ -25,15 +26,14 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   late Future<String?>? tokenFuture;
   late Device device;
 
-
   final List<Tab> tabLabel = <Tab>[
-    Tab(
+    const Tab(
       child: Text(
         'EXISTING',
         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
       ),
     ),
-    Tab(
+    const Tab(
       child: Text(
         'NEW',
         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -47,21 +47,22 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
     tabController = TabController(length: 2, vsync: this);
     tokenFuture = null;
-    SchedulerBinding.instance!.addPostFrameCallback((_)async {
-     /* animationController!.addListener(() {
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      /* animationController!.addListener(() {
         if (animationController!.isCompleted) {
         }
       });*/
       loginBloc.isAnimating = true;
-    //  animationController!.forward();
-       tokenFuture =   loginBloc.getToken()  ;
+      //  animationController!.forward();
+      tokenFuture = loginBloc.getToken();
       setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    device = Device(MediaQuery.of(context).size.height, MediaQuery.of(context).size.width);
+    device = Device(
+        MediaQuery.of(context).size.height, MediaQuery.of(context).size.width);
     loginBloc = Provider.of<LoginBloc>(context);
     loginBloc.context = context;
 
@@ -82,42 +83,52 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
                       colors: [
-                        TinyColor(Theme.of(context).primaryColor).darken(20).color,
-                        TinyColor(Theme.of(context).primaryColor).darken(15).color,
-                        TinyColor(Theme.of(context).primaryColor).darken(8).color,
-                        TinyColor(Theme.of(context).primaryColor).lighten(3).color,
-                        TinyColor(Theme.of(context).primaryColor).lighten(5).color,
+                        TinyColor(Theme.of(context).primaryColor)
+                            .darken(20)
+                            .color,
+                        TinyColor(Theme.of(context).primaryColor)
+                            .darken(15)
+                            .color,
+                        TinyColor(Theme.of(context).primaryColor)
+                            .darken(8)
+                            .color,
+                        TinyColor(Theme.of(context).primaryColor)
+                            .lighten(3)
+                            .color,
+                        TinyColor(Theme.of(context).primaryColor)
+                            .lighten(5)
+                            .color,
                       ],
                     ),
                   ),
-                  child: Container(
-                    /// 2 Images at Corners
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment(-1.1, -1.2),
-                          child: Opacity(
-                              opacity: 0.5,
-                              child: Image.asset(
-                                'assets/images/pattern1.png',
-                                height: device.isMobile ? 250 : 300,
-                                width: device.isMobile ? 250 : 300,
-                              )),
-                        ),
-                        Align(
-                          alignment: Alignment(-1.1, -1.2),
-                          child: Image.asset('assets/images/pattern1.png', height: device.isMobile ? 200 : 250, width: device.isMobile ? 200 : 250),
-                        ),
-                        Align(
-                            alignment: Alignment(1.1, 1.3),
-                            child: Image.asset('assets/images/pattern2.png', height: 300, width: device.isMobile ? 150 : 300))
-                      ],
-                    ),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: const Alignment(-1.1, -1.2),
+                        child: Opacity(
+                            opacity: 0.5,
+                            child: Image.asset(
+                              'assets/images/pattern1.png',
+                              height: device.isMobile ? 250 : 300,
+                              width: device.isMobile ? 250 : 300,
+                            )),
+                      ),
+                      Align(
+                        alignment: const Alignment(-1.1, -1.2),
+                        child: Image.asset('assets/images/pattern1.png',
+                            height: device.isMobile ? 200 : 250,
+                            width: device.isMobile ? 200 : 250),
+                      ),
+                      Align(
+                          alignment: const Alignment(1.1, 1.3),
+                          child: Image.asset('assets/images/pattern2.png',
+                              height: 300, width: device.isMobile ? 150 : 300))
+                    ],
                   ),
                 ),
 
                 /// Body of Login, After Auth Checked
-                Container(
+                SizedBox(
                   height: device.deviceHeight,
                   width: device.deviceWidth * 0.90,
                   child: FutureBuilder(
@@ -125,9 +136,12 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       builder: (context, snapshot) {
                         print(snapshot.data);
                         // ignore: missing_return
-                        if (snapshot.connectionState == ConnectionState.waiting ) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
                           return Center(child: logoDesign());
-                        } else if (snapshot.connectionState == ConnectionState.done || snapshot.data == null) {
+                        } else if (snapshot.connectionState ==
+                                ConnectionState.done ||
+                            snapshot.data == null) {
                           /// Body of Login UI
                           return body();
                         }
@@ -143,35 +157,35 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   }
 
   Widget body() {
-    return Container(
-      child: Flex(
-        direction: device.isMobile ? Axis.vertical : Axis.horizontal,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          /// Logo Section UI
-          Flexible(
-              fit: FlexFit.loose,
-              flex: 1,
-              child: Container(child: logoDesign(showText: true))),
+    return Flex(
+      direction: device.isMobile ? Axis.vertical : Axis.horizontal,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        /// Logo Section UI
+        Flexible(
+            fit: FlexFit.loose,
+            flex: 1,
+            child: Container(child: logoDesign(showText: true))),
 
-          /// Login Form UI
-          loginBloc.isAnimating
-              ? Container()
-              : Flexible(
-                  fit: FlexFit.loose,
-                  flex: 2,
+        /// Login Form UI
+        loginBloc.isAnimating
+            ? Container()
+            : Flexible(
+                fit: FlexFit.loose,
+                flex: 2,
+                child: Container(
+                  padding: const EdgeInsets.only(top: 20.0),
                   child: Container(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: Container(
-                      padding: const EdgeInsets.all(10.0),
-                      width: device.isMobile ? device.deviceWidth * .90 : device.deviceWidth * .50,
-                      child: loginForm(),
-                    ),
+                    padding: const EdgeInsets.all(10.0),
+                    width: device.isMobile
+                        ? device.deviceWidth * .90
+                        : device.deviceWidth * .50,
+                    child: loginForm(),
                   ),
                 ),
-        ],
-      ),
+              ),
+      ],
     );
   }
 
@@ -186,16 +200,18 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
           child: Container(
             alignment: Alignment.center,
             height: 50,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(27.5), border: Border.all(color: Colors.white)),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(27.5),
+                border: Border.all(color: Colors.white)),
             child: TabBar(
               onTap: (i) {},
               controller: tabController,
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(27.5),
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   begin: Alignment(1.0, 0.0),
                   end: Alignment(-1.0, 0.0),
-                  colors: [const Color(0xffff470b), const Color(0xfffca10e)],
+                  colors: [Color(0xffff470b), Color(0xfffca10e)],
                   stops: [0.0, 1.0],
                 ),
               ),
@@ -206,11 +222,13 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             ),
           ),
         ),
-        Padding(padding: EdgeInsets.only(top: 20)),
+        const Padding(padding: EdgeInsets.only(top: 20)),
         Flexible(
           fit: FlexFit.loose,
           flex: 2,
-          child: TabBarView(controller: tabController, children: <Widget>[loginWidget(), signUpWidget()]),
+          child: TabBarView(
+              controller: tabController,
+              children: <Widget>[loginWidget(), signUpWidget()]),
         ),
       ],
     );
@@ -220,7 +238,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   Widget logoDesign({bool? showText}) {
     double iconSize = device.isMobile ? 100 : 150;
 
-    return Container(
+    return SizedBox(
       height: device.deviceHeight,
       width: device.deviceWidth,
       child: Column(
@@ -230,10 +248,10 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
           Container(
             height: iconSize,
             width: iconSize,
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(device.deviceWidth * .12),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Colors.black12,
                   blurRadius: 1.0,
@@ -252,7 +270,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: Image.asset(
-                  "assets/images/app_icon.png",
+                  'assets/images/app_icon.png',
                 ),
               ),
             ),
@@ -263,7 +281,10 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Text(
                     "Let's get started now",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: device.isMobile ? 25 : 30, color: Colors.white),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: device.isMobile ? 25 : 30,
+                        color: Colors.white),
                   ),
                 ),
         ],
@@ -284,15 +305,17 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             child: Container(
               padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
               child: TextFormField(
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
-                  labelText: "Email",
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelText: 'Email',
+                  labelStyle: const TextStyle(color: Colors.white),
                   enabledBorder: const OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.white, width: 0.0),
+                    borderSide: BorderSide(color: Colors.white, width: 0.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Theme.of(context).accentColor, width: 0.0),
+                    borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.secondary,
+                        width: 0.0),
                   ),
                 ),
                 controller: emailController,
@@ -305,16 +328,18 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             child: Container(
               padding: const EdgeInsets.only(top: 20, right: 10, left: 10),
               child: TextField(
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 obscureText: true,
                 decoration: InputDecoration(
-                  labelStyle: TextStyle(color: Colors.white),
-                  labelText: "Password",
+                  labelStyle: const TextStyle(color: Colors.white),
+                  labelText: 'Password',
                   enabledBorder: const OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.white, width: 0.0),
+                    borderSide: BorderSide(color: Colors.white, width: 0.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Theme.of(context).accentColor, width: 0.0),
+                    borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.secondary,
+                        width: 0.0),
                   ),
                 ),
                 controller: passwordController,
@@ -325,28 +350,35 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             fit: FlexFit.loose,
             flex: 1,
             child: GestureDetector(
-              onTap: () => loginBloc.isLoading ? null : loginBloc.signIn(emailController.text, passwordController.text),
+              onTap: () => loginBloc.isLoading
+                  ? null
+                  : loginBloc.signIn(
+                      emailController.text, passwordController.text),
               child: Container(
                 width: 200,
                 height: 50,
-                margin: EdgeInsets.only(top: 20),
+                margin: const EdgeInsets.only(top: 20),
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(27.5),
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       begin: Alignment(1.0, 0.0),
                       end: Alignment(-1.0, 0.0),
-                      colors: [const Color(0xffff470b), const Color(0xfffca10e)],
+                      colors: [Color(0xffff470b), Color(0xfffca10e)],
                       stops: [0.0, 1.0],
                     ),
                   ),
 
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   // color: Theme.of(context).primaryColor,
                   child: loginBloc.isLoading
                       ? Utils.loadingView(40)
-                      : Text('LOGIN', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+                      : const Text('LOGIN',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold)),
                 ),
               ),
             ),
@@ -356,11 +388,13 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             flex: 1,
             child: GestureDetector(
               onTap: () => resetPassword(),
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.all(15.0),
                 child: Text(
-                  "Forget Password",
-                  style: TextStyle(decoration: TextDecoration.underline, color: Colors.white),
+                  'Forget Password',
+                  style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      color: Colors.white),
                 ),
               ),
             ),
@@ -380,15 +414,17 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
           Container(
             padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
             child: TextFormField(
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
-                labelText: "Email",
-                labelStyle: TextStyle(color: Colors.white),
+                labelText: 'Email',
+                labelStyle: const TextStyle(color: Colors.white),
                 enabledBorder: const OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.white, width: 0.0),
+                  borderSide: BorderSide(color: Colors.white, width: 0.0),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor, width: 0.0),
+                  borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.secondary,
+                      width: 0.0),
                 ),
               ),
               controller: emailController,
@@ -398,45 +434,57 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             padding: const EdgeInsets.only(top: 20, right: 10, left: 10),
             child: TextField(
               obscureText: true,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
-                labelText: "Password",
-                labelStyle: TextStyle(color: Colors.white),
+                labelText: 'Password',
+                labelStyle: const TextStyle(color: Colors.white),
                 enabledBorder: const OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.white, width: 0.0),
+                  borderSide: BorderSide(color: Colors.white, width: 0.0),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor, width: 0.0),
+                  borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.secondary,
+                      width: 0.0),
                 ),
               ),
               controller: passwordController,
             ),
           ),
           GestureDetector(
-            onTap: () => loginBloc.isLoading ? null : loginBloc.register(emailController.text, passwordController.text),
+            onTap: () => loginBloc.isLoading
+                ? null
+                : loginBloc.register(
+                    emailController.text, passwordController.text),
             child: Container(
               width: 200,
               height: 50,
-              margin: EdgeInsets.only(top: 20),
+              margin: const EdgeInsets.only(top: 20),
               child: Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(27.5),
                   gradient: LinearGradient(
-                    begin: Alignment(1.0, 0.0),
-                    end: Alignment(-1.0, 0.0),
-                    colors: [AppConstants.orangeColor, AppConstants.yellowColor],
-                    stops: [0.0, 1.0],
+                    begin: const Alignment(1.0, 0.0),
+                    end: const Alignment(-1.0, 0.0),
+                    colors: [
+                      AppConstants.orangeColor,
+                      AppConstants.yellowColor
+                    ],
+                    stops: const [0.0, 1.0],
                   ),
                 ),
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 child: loginBloc.isLoading
                     ? Utils.loadingView(40)
-                    : Text('SIGNUP', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+                    : const Text('SIGNUP',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold)),
               ),
             ),
           ),
-          Flexible(
+          const Flexible(
             fit: FlexFit.loose,
             flex: 1,
             child: Padding(
@@ -457,7 +505,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
         actions: [
           GestureDetector(
             onTap: () {
-              if (emailController.text != null && emailController.text.isNotEmpty) {
+              if (emailController.text.isNotEmpty) {
                 loginBloc.resetPassword(emailController.text);
                 Navigator.pop(context);
               }
@@ -466,7 +514,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'SUBMIT',
-                style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).primaryColor),
               ),
             ),
           ),
@@ -476,24 +526,26 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'CANCEL',
-                style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).primaryColor),
               ),
             ),
           ),
         ],
-        title: Text(
-          "Forgot Password?",
+        title: const Text(
+          'Forgot Password?',
           style: TextStyle(fontSize: 16),
         ),
-        content: Container(
+        content: SizedBox(
           height: 70,
           child: TextFormField(
             maxLines: 1,
             decoration: InputDecoration(
-              labelText: "Email",
-              border: new OutlineInputBorder(
-                borderRadius: new BorderRadius.circular(10.0),
-                borderSide: new BorderSide(),
+              labelText: 'Email',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: const BorderSide(),
               ),
             ),
             controller: emailController,
